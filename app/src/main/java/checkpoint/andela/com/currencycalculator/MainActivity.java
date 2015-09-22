@@ -21,12 +21,12 @@ public class MainActivity extends ActionBarActivity {
         display = (DisplayFragment)fm.findFragmentById(R.id.display);
         keypad = (KeypadFragment)fm.findFragmentById(R.id.keypad);
         keypad.setDisplayDelegate(display);
-        if (display == null && keypad==null){
-            display = new DisplayFragment();
-            keypad = new KeypadFragment();
-            keypad.setDisplayDelegate(display);
-            fm.beginTransaction().add(R.id.container, display).add(R.id.container, keypad).commit();
-        }
+//        if (display == null && keypad==null){
+//            display = new DisplayFragment();
+//            keypad = new KeypadFragment();
+//            keypad.setDisplayDelegate(display);
+//            fm.beginTransaction().add(R.id.container, display).add(R.id.container, keypad).commit();
+//        }
     }
 
     public void enterPressed(View v){
@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void operationPressed(View v){ keypad.operationPressed(v); }
 
-    public void periodPressed(){
+    public void periodPressed(View v){
 
     }
 
