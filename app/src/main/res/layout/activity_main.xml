@@ -1,0 +1,26 @@
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:name="checkpoint.andela.com.currencycalculator.DisplayFragment"
+        android:id="@+id/display"
+        android:layout_weight="1"
+        tools:layout="@layout/displayfragment" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/keypad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:name="checkpoint.andela.com.currencycalculator.KeypadFragment"
+        tools:layout="@layout/keypadfragment"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
