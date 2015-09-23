@@ -14,17 +14,30 @@ import android.widget.TextView;
  */
 public class DisplayFragment extends Fragment implements DisplayDelegate {
     private TextView display;
+    TextView currency;
+    private TextView memory;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.displayfragment, container, false);
         display = (TextView)v.findViewById(R.id.display);
+        currency = (TextView)v.findViewById(R.id.currency);
+        memory = (TextView) v.findViewById(R.id.displayMemory);
 
         return v;
     }
 
     @Override
-    public void update(CharSequence result) {
-        display.setText(result.toString());
+    public void onStart() {
+        super.onStart();
     }
+
+    @Override
+    public void update(String result) {
+        display.setText(result);
+    }
+
+
+    public String getDisplayText(){ return display.getText().toString(); }
 }

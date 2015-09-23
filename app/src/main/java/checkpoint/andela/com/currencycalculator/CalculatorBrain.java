@@ -12,11 +12,12 @@ import java.util.Queue;
  */
 public class CalculatorBrain {
     private final int last = 0;
-    private String temp = "";
+    String temp = "";
     Hashtable<String, Operation> operation = new Hashtable<>();
     ArrayList<Number> operand = new ArrayList<>();
     Operation currentOperation;
     boolean isTyping = false;
+
     public CalculatorBrain(){
         setupOperation();
     }
@@ -28,7 +29,7 @@ public class CalculatorBrain {
         operation.put("×", Operation.multiply);
     }
 
-    public void evalute(Operation a){
+    protected void evalute(Operation a){
         double result = 0;
         switch (a){
             case divide:
@@ -47,7 +48,7 @@ public class CalculatorBrain {
         temp = NumberFormat.getInstance().format(result);
     }
 
-    public void enter(){
+    public void evaluate(){
         if(currentOperation != null && isTyping)
           toggleIsTyping();
     }
@@ -84,7 +85,7 @@ public class CalculatorBrain {
         }
     }
 
-    public CharSequence getResult(){
+    public String getResult(){
         return temp;
     }
 

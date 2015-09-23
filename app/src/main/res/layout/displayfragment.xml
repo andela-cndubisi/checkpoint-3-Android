@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/displayMemory"
+        android:text="@string/zero"
+        android:lines="1"
+        android:layout_alignParentTop="true"
+        android:textSize="50sp"
+        android:layout_above="@+id/display"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/display"
+        android:layout_alignParentLeft="true"
+        android:text="USD"
+        android:textSize="30sp"
+        android:id="@+id/currency"
+        android:gravity="bottom|left"
+        android:layout_alignParentBottom="true"/>
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/zero"
         android:id="@+id/display"
         android:gravity="bottom|right"
-        android:textSize="@dimen/abc_text_size_display_4_material"
-        android:layout_gravity="right"
-        android:singleLine="true" />
-</LinearLayout>
+        android:layout_alignParentRight="true"
+        android:textSize="40sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:minLines="1" />
+</RelativeLayout>

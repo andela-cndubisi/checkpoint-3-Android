@@ -7,38 +7,36 @@
 
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:name="checkpoint.andela.com.currencycalculator.DisplayFragment"
         android:id="@+id/display"
-        tools:layout="@layout/displayfragment" />
+        tools:layout="@layout/displayfragment"
+        android:layout_weight="1" />
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:id="@+id/keyNcurrency"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:baselineAligned="false">
+        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="fill_horizontal"
+        android:layout_weight="3">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/keypad"
-        android:layout_width="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="2"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:name="checkpoint.andela.com.currencycalculator.KeypadFragment"
-        tools:layout="@layout/keypadfragment"
-        />
+        tools:layout="@layout/keypadfragment" />
 
-    <fragment
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
+        <fragment
+        android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
         android:name="checkpoint.andela.com.currencycalculator.CurrencyWheelFragment"
-        android:id="@+id/fragment"
-        tools:layout="@layout/currencywheelfragment"
-        />
+        android:id="@+id/list"
+        tools:layout="@layout/currencywheelfragment" />
     </LinearLayout>
 
 </LinearLayout>

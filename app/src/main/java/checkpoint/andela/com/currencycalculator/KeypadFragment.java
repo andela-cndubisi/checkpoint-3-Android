@@ -13,11 +13,8 @@ import static java.lang.Character.isDigit;
  * A placeholder fragment containing a simple view.
  */
 public class KeypadFragment extends Fragment {
-    private CalculatorBrain brain;
+    private CurrencyCalculator brain;
     private DisplayDelegate delegate;
-    public KeypadFragment() {
-        brain = new CalculatorBrain();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,17 +29,21 @@ public class KeypadFragment extends Fragment {
     }
 
 
-    public void digitPressed(View v){
-        if(v instanceof Button){
-            brain.addDigit(((Button) v).getText().toString());
-            delegate.update(brain.getResult());
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        brain = ((MainActivity)getActivity()).getBrain();
+    }
+
+    public void digitPressed(String digit){
+           brain.addDigit(digit);
+           delegate.update(brain.getResult());
     }
 
     public void enterPressed(View v){
         if(v instanceof Button) {
             if(v.getId() == R.id.btnE) {
-                brain.enter();
+                brain.evaluate();
                 delegate.update(brain.getResult());
             }
         }
@@ -72,7 +73,16 @@ public class KeypadFragment extends Fragment {
     }
 
     public interface DisplayDelegate{
-        void update(CharSequence result);
+        void update(String result);
     }
 
+
+//    private enum DigitKeyPad{
+//        zero("0"), one("1"), two("2"), three("3"), four("4"), five("5"), six("6"), seven("7"), eight("8"), nine("9");
+//        String num ;
+//        DigitKeyPad(String num){
+//          this.num = num;
+//        }
+//
+//    }
 }
