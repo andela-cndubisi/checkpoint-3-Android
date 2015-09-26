@@ -6,9 +6,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
+import checkpoint.andela.com.currencycalculator.Fragments.CurrencyWheelFragment;
+import checkpoint.andela.com.currencycalculator.Fragments.DisplayFragment;
+import checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment;
+
 public class MainActivity extends ActionBarActivity {
     private CurrencyCalculator brain;
-    DisplayFragment display;
+    public DisplayFragment display;
     KeypadFragment keypad;
     CurrencyWheelFragment currencyWheel;
 
@@ -43,14 +47,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void digitPressed(View v){
-        keypad.digitPressed(((Button) v).getText().toString());
+        if (v instanceof Button)
+            keypad.digitPressed(((Button) v).getText().toString());
     }
 
     public void clearPressed(View v){
-        keypad.clearPressed(v);
+        if (v instanceof Button)
+            keypad.clearPressed(v);
     }
 
-    public void operationPressed(View v){ keypad.operationPressed(v); }
+    public void operationPressed(View v){
+        if (v instanceof Button)
+            keypad.operationPressed(v);
+    }
 
     public void periodPressed(View v){
 

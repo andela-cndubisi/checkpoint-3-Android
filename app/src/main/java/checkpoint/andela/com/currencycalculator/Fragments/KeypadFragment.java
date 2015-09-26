@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator;
+package checkpoint.andela.com.currencycalculator.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import checkpoint.andela.com.currencycalculator.CurrencyCalculator;
+import checkpoint.andela.com.currencycalculator.MainActivity;
+import checkpoint.andela.com.currencycalculator.R;
 
 import static java.lang.Character.isDigit;
 

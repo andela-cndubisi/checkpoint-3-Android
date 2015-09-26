@@ -4,8 +4,6 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Created by andela-cj on 9/21/15.
@@ -15,7 +13,7 @@ public class CalculatorBrain {
     String temp = "";
     Hashtable<String, Operation> operation = new Hashtable<>();
     ArrayList<Number> operand = new ArrayList<>();
-    Operation currentOperation;
+    public Operation currentOperation;
     boolean isTyping = false;
 
     public CalculatorBrain(){
@@ -69,6 +67,7 @@ public class CalculatorBrain {
     public void clear (){
         operand = new ArrayList<>();
         currentOperation = null;
+        isTyping = false;
         temp = "0";
     }
 

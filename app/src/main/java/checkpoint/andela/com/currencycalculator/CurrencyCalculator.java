@@ -25,7 +25,7 @@ public class CurrencyCalculator extends CalculatorBrain {
     public double convert(String currentC, String newC, double amount){
         if (!currentC.equals(newC)){
         double currentInBase = convertToUSD(currentC, amount);
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tmpCurrency);
+        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
            return cr.getRate() * currentInBase;
         }
 

@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator;
+package checkpoint.andela.com.currencycalculator.Fragments;
 
 import android.app.ListFragment;
 import android.os.AsyncTask;
@@ -11,6 +11,11 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import checkpoint.andela.com.currencycalculator.CurrencyCalculator;
+import checkpoint.andela.com.currencycalculator.FetchCurrencyRatesTask;
+import checkpoint.andela.com.currencycalculator.MainActivity;
+import checkpoint.andela.com.currencycalculator.R;
 
 /**
  * Created by andela-cj on 9/22/15.

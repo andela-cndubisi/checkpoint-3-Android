@@ -9,38 +9,37 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="checkpoint.andela.com.currencycalculator.DisplayFragment"
+        android:name="checkpoint.andela.com.currencycalculator.Fragments.DisplayFragment"
         android:id="@+id/display"
         tools:layout="@layout/displayfragment"
         android:layout_weight="1" />
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:id="@+id/keyNcurrency"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="0dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:baselineAligned="false"
         android:gravity="fill_horizontal"
-        android:layout_weight="3">
+        android:layout_weight="3.5">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/keypad"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:name="checkpoint.andela.com.currencycalculator.KeypadFragment"
-        tools:layout="@layout/keypadfragment"
-        android:layout_weight="1"
-        android:layout_gravity="bottom|top" />
-
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/keypad"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="3"
+            android:name="checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment"
+            tools:layout="@layout/keypadfragment"
+        />
         <fragment
-        android:layout_width="fill_parent"
-            android:layout_height="0dp"
-        android:name="checkpoint.andela.com.currencycalculator.CurrencyWheelFragment"
-        android:id="@+id/list"
-        tools:layout="@layout/currencywheelfragment"
-            android:layout_weight="0.5" />
+            tools:layout="@layout/currencywheelfragment"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:name="checkpoint.andela.com.currencycalculator.Fragments.CurrencyWheelFragment"
+            android:id="@+id/list"
+        />
     </LinearLayout>
 
 </LinearLayout>
