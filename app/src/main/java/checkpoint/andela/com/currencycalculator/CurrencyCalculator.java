@@ -22,24 +22,23 @@ public class CurrencyCalculator extends CalculatorBrain {
     }
 
 
-    public double convert(String currentC, String newC, double amount){
-        if (!currentC.equals(newC)){
-        double currentInBase = convertToUSD(currentC, amount);
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
+    public double convert(double amount){
+        if (!baseCurrency.equals(tmpCurrency)){
+         double currentInBase = convertToUSD(amount);
+         CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tmpCurrency);
            return cr.getRate() * currentInBase;
         }
 
         return amount;
     }
 
-    private double convertToUSD(String currentC, double amount) {
-
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tmpCurrency);
+    private double convertToUSD(double amount) {
+        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
         return amount/cr.getRate();
     }
 
     public void setBaseCurrency(String baseCurrency) {
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tmpCurrency);
+        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
         this.baseCurrency = cr.getCurrency();;
     }
 
@@ -52,14 +51,14 @@ public class CurrencyCalculator extends CalculatorBrain {
     public void toggleIsTyping() {
         isTyping = false;
         try {
-            double n = convert(baseCurrency, tmpCurrency, Double.parseDouble(temp));
-            String newtmp = String.format("%s",n);
+            double n = convert(Double.parseDouble(temp));
+            String newtmp = NumberFormat.getInstance().format(n);
             operand.add(NumberFormat.getInstance().parse(newtmp));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         if(operand.size() > 1){
-            super.evalute(currentOperation);
+            super.evaluate(currentOperation);
             tmpCurrency = baseCurrency;
         }
     }

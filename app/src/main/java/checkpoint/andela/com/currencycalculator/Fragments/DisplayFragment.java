@@ -35,7 +35,6 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
         super.onStart();
     }
 
-    @Override
     public void update(String result) {
         display.setText(result);
     }

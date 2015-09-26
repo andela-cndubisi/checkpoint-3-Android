@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class CurrencyDataParser {
     private static ArrayList<CurrencyRates> rates ;
-    public JSONArray currentRates;
+    private JSONArray currentRates;
 
     public CurrencyDataParser(){
         rates = new ArrayList<>();
@@ -27,6 +27,8 @@ public class CurrencyDataParser {
             }else {
                 generateDefaultRates();
             }
+        }else {
+            generateDefaultRates();
         }
     }
 
@@ -74,7 +76,7 @@ public class CurrencyDataParser {
     }
 
     public enum XchangeRates {
-        USD (1.0)
+         USD (1.0)
         ,KWD (3.30)
         ,BHD (2.65)
         ,OMR (2.59)

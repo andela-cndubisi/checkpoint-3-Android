@@ -10,9 +10,9 @@ import java.util.Hashtable;
  */
 public class CalculatorBrain {
     private final int last = 0;
-    String temp = "";
-    Hashtable<String, Operation> operation = new Hashtable<>();
-    ArrayList<Number> operand = new ArrayList<>();
+    protected String temp = "";
+    private Hashtable<String, Operation> operation = new Hashtable<>();
+    protected ArrayList<Number> operand = new ArrayList<>();
     public Operation currentOperation;
     boolean isTyping = false;
 
@@ -27,8 +27,8 @@ public class CalculatorBrain {
         operation.put("×", Operation.multiply);
     }
 
-    protected void evalute(Operation a){
-          double result = 0;
+    protected void evaluate(Operation a){
+        double result = 0;
         switch (a){
             case divide:
                 result = operand.remove(last).doubleValue() / operand.remove(last).doubleValue();
@@ -64,6 +64,21 @@ public class CalculatorBrain {
         }
     }
 
+    public void addDecimalPoint(){
+        if (isTyping) {
+            final String decimal = ".";
+            if (!temp.contains(decimal)) temp += decimal;
+        }else {
+            clear();
+        }
+    }
+
+    public void negateDigit(){
+        final String minus = "-";
+        if(temp.startsWith(minus)) temp = temp.replace(minus,"");
+        else  temp = minus + temp;
+    }
+
     public void clear (){
         operand = new ArrayList<>();
         currentOperation = null;
@@ -72,7 +87,6 @@ public class CalculatorBrain {
     }
 
     public void toggleIsTyping() {
-
         isTyping = false;
         try {
             operand.add(NumberFormat.getInstance().parse(temp));
@@ -80,7 +94,7 @@ public class CalculatorBrain {
             e.printStackTrace();
         }
         if(operand.size() >1 ){
-            evalute(currentOperation);
+            evaluate(currentOperation);
         }
     }
 

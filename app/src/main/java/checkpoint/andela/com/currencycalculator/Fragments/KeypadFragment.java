@@ -67,26 +67,26 @@ public class KeypadFragment extends Fragment {
             brain.currentOperation  = brain.getOperation(((Button)v).getText().toString());
         }
     }
-
+    public void periodPressed(View v){
+        brain.addDecimalPoint();
+        delegate.update(brain.getResult());
+    }
     public void negatePressed(View v){
-
+        if(v instanceof Button) {
+            brain.negateDigit();
+            delegate.update(brain.getResult());
+        }
     }
 
     public void setDisplayDelegate(DisplayDelegate delegate){
         this.delegate = delegate;
     }
+    public DisplayDelegate getDisplayDelegate(){
+        return delegate;
+    }
 
     public interface DisplayDelegate{
         void update(String result);
+        String getDisplayText();
     }
-
-
-//    private enum DigitKeyPad{
-//        zero("0"), one("1"), two("2"), three("3"), four("4"), five("5"), six("6"), seven("7"), eight("8"), nine("9");
-//        String num ;
-//        DigitKeyPad(String num){
-//          this.num = num;
-//        }
-//
-//    }
 }

@@ -19,22 +19,20 @@ import java.net.URLEncoder;
  * Created by andela-cj on 9/22/15.
  */
 public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
-    CurrencyDataParser dataParser;
+    private CurrencyDataParser dataParser;
+    private String query = "select*from yahoo.finance.xchange where pair in (";
 
-    String BaseURL = "https://query.yahooapis.com/v1/public/yql?q=";
-    String query = "select*from yahoo.finance.xchange where pair in (";
-    String param = "&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-    public FetchCurrencyRatesTask(String [] a){
+    public FetchCurrencyRatesTask(String [] keys){
         dataParser = new CurrencyDataParser();
-        generateQuery(a);
+        generateQuery(keys);
     }
 
-    private void generateQuery(String []a){
-
+    private void generateQuery(String []keys){
         String Base = "USD";
-        for (int i = 0; i< a.length; i++){
-            query += "\""+Base+ a[i]+"\"";
-            if(i != a.length-1 ){
+
+        for (int i = 0; i< keys.length; i++){
+            query += "\""+ Base + keys[i]+"\"";
+            if(i != keys.length-1 ){
                 query += ",";
             }
         }
@@ -48,19 +46,21 @@ public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
 
     @Override
     protected String doInBackground(String... params) {
+        final String BaseURL = "https://query.yahooapis.com/v1/public/yql?q=";
+        final String param = "&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
-        String currencyRate= null;
+        String currencyRate;
 
         try {
-            String ur1 = BaseURL+query+param;
             URL url = new URL(BaseURL+query+param);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
             InputStream stream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
 
             if (stream == null){  return null; }
 
@@ -76,13 +76,10 @@ public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
 
         } catch (MalformedURLException e) {
             return null;
-//                e.printStackTrace();
         } catch (ProtocolException e) {
-//                return null;
-            e.printStackTrace();
+            return null;
         } catch (IOException e) {
             return null;
-//                e.printStackTrace();
         } finally {
             if (urlConnection !=null){
                 urlConnection.disconnect();
@@ -95,7 +92,6 @@ public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
                 }
             }
         }
-        return null;
     }
 
     @Override

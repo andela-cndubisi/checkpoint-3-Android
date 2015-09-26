@@ -7,7 +7,7 @@
     android:textSize="40sp"
     android:password="false"
     android:background="#2a5a61"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:paddingLeft="10dp">
 
 </TextView>

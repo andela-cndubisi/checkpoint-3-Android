@@ -27,45 +27,40 @@ public class MainActivity extends ActionBarActivity {
 
     private void setUpFragment(){
         FragmentManager fm = getFragmentManager();
-        display = (DisplayFragment)fm.findFragmentById(R.id.display);
+        display = (DisplayFragment)fm.findFragmentById(R.id.screen);
         keypad = (KeypadFragment)fm.findFragmentById(R.id.keypad);
-        currencyWheel = (CurrencyWheelFragment)fm.findFragmentById(R.id.currencyList);
+        currencyWheel = (CurrencyWheelFragment)fm.findFragmentById(R.id.currencylist);
         keypad.setDisplayDelegate(display);
-//        if (display == null && keypad==null){
-//            display = new DisplayFragment();
-//            keypad = new KeypadFragment();
-//            keypad.setDisplayDelegate(display);
-//            fm.beginTransaction().add(R.id.container, display).add(R.id.container, keypad).commit();
-//        }
+        if (display == null || keypad==null || currencyWheel == null ){
+            display = new DisplayFragment();
+            keypad = new KeypadFragment();
+            currencyWheel = new CurrencyWheelFragment();
+            keypad.setDisplayDelegate(display);
+            fm.beginTransaction().add(R.id.container, display).add(R.id.container, keypad).add(R.id.container, currencyWheel).commit();
+        }
     }
-
-
 
     public void enterPressed(View v){
         keypad.enterPressed(v);
-        display.currency.setText(brain.baseCurrency.toString());
+        display.currency.setText(brain.baseCurrency);
     }
 
     public void digitPressed(View v){
-        if (v instanceof Button)
-            keypad.digitPressed(((Button) v).getText().toString());
+        keypad.digitPressed(((Button) v).getText().toString());
     }
-
     public void clearPressed(View v){
-        if (v instanceof Button)
-            keypad.clearPressed(v);
+        keypad.clearPressed(v);
     }
 
     public void operationPressed(View v){
-        if (v instanceof Button)
-            keypad.operationPressed(v);
+        keypad.operationPressed(v);
     }
 
     public void periodPressed(View v){
-
+        keypad.periodPressed(v);
     }
     public void negatePressed(View v){
-
+        keypad.negatePressed(v);
     }
 
     public CurrencyCalculator getBrain() {
