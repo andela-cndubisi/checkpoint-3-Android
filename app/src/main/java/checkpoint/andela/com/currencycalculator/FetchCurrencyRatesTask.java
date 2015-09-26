@@ -55,7 +55,6 @@ public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
         try {
             String ur1 = BaseURL+query+param;
             URL url = new URL(BaseURL+query+param);
-            System.out.println(BaseURL+query+param);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();

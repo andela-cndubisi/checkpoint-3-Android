@@ -20,10 +20,7 @@
     <string name="multiply">×</string>
     <string name="period">.</string>
     <string name="zero">0</string>
-
-
-
-
+    <string name="currency">Currency</string>
 
 
 </resources>

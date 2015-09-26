@@ -3,7 +3,8 @@
     android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:background="#1d2a3a">
 
     <fragment
         android:layout_width="match_parent"
@@ -27,16 +28,19 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/keypad"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:name="checkpoint.andela.com.currencycalculator.KeypadFragment"
-        tools:layout="@layout/keypadfragment" />
+        tools:layout="@layout/keypadfragment"
+        android:layout_weight="1"
+        android:layout_gravity="bottom|top" />
 
         <fragment
         android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
         android:name="checkpoint.andela.com.currencycalculator.CurrencyWheelFragment"
         android:id="@+id/list"
-        tools:layout="@layout/currencywheelfragment" />
+        tools:layout="@layout/currencywheelfragment"
+            android:layout_weight="0.5" />
     </LinearLayout>
 
 </LinearLayout>

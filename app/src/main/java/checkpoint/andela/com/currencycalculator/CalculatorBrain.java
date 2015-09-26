@@ -30,7 +30,7 @@ public class CalculatorBrain {
     }
 
     protected void evalute(Operation a){
-        double result = 0;
+          double result = 0;
         switch (a){
             case divide:
                 result = operand.remove(last).doubleValue() / operand.remove(last).doubleValue();
