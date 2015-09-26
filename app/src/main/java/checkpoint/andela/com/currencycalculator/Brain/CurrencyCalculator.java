@@ -1,7 +1,9 @@
-package checkpoint.andela.com.currencycalculator;
+package checkpoint.andela.com.currencycalculator.Brain;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+
+import checkpoint.andela.com.currencycalculator.CurrencyDataParser;
 
 /**
  * Created by andela-cj on 9/23/15.

@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator;
+package checkpoint.andela.com.currencycalculator.Brain;
 
 import java.text.NumberFormat;
 import java.text.ParseException;

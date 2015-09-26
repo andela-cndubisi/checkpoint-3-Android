@@ -1,7 +1,6 @@
 package checkpoint.andela.com.currencycalculator.Fragments;
 
 import android.app.ListFragment;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,8 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-import checkpoint.andela.com.currencycalculator.CurrencyCalculator;
-import checkpoint.andela.com.currencycalculator.FetchCurrencyRatesTask;
+import checkpoint.andela.com.currencycalculator.Brain.CurrencyCalculator;
+import checkpoint.andela.com.currencycalculator.Brain.FetchCurrencyRatesTask;
 import checkpoint.andela.com.currencycalculator.MainActivity;
 import checkpoint.andela.com.currencycalculator.R;
 

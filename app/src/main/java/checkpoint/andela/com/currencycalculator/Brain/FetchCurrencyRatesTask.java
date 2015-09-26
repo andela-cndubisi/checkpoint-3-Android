@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator;
+package checkpoint.andela.com.currencycalculator.Brain;
 
 import android.os.AsyncTask;
 
@@ -14,6 +14,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import checkpoint.andela.com.currencycalculator.CurrencyDataParser;
 
 /**
  * Created by andela-cj on 9/22/15.

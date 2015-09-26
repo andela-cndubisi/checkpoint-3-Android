@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import checkpoint.andela.com.currencycalculator.CurrencyCalculator;
+import checkpoint.andela.com.currencycalculator.Brain.CurrencyCalculator;
 import checkpoint.andela.com.currencycalculator.MainActivity;
 import checkpoint.andela.com.currencycalculator.R;
 

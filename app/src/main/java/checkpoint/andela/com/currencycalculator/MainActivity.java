@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
+import checkpoint.andela.com.currencycalculator.Brain.CurrencyCalculator;
 import checkpoint.andela.com.currencycalculator.Fragments.CurrencyWheelFragment;
 import checkpoint.andela.com.currencycalculator.Fragments.DisplayFragment;
 import checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment;
@@ -42,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void enterPressed(View v){
         keypad.enterPressed(v);
-        display.currency.setText(brain.baseCurrency);
+        display.currency.setText(brain.getBaseCurrency());
     }
 
     public void digitPressed(View v){
