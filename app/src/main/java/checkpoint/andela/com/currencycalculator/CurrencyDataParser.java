@@ -19,17 +19,23 @@ public class CurrencyDataParser {
         rates = new ArrayList<>();
     }
 
-    public void parse() throws JSONException {
+    public void parse()  {
         if (json != null) {
-            JSONObject jsonObject = new JSONObject(json);
-            JSONObject query = jsonObject.getJSONObject("query");
-            JSONObject result;
-            if((result = query.getJSONObject("results")) != null) {
-                currentRates = result.getJSONArray("rate");
-                generateRates();
-            }else {
-                generateDefaultRates();
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(json);
+                JSONObject query = jsonObject.getJSONObject("query");
+                JSONObject result;
+                if((result = query.getJSONObject("results")) != null) {
+                    currentRates = result.getJSONArray("rate");
+                    generateRates();
+                }else {
+                    generateDefaultRates();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
         }else {
             generateDefaultRates();
         }
@@ -81,16 +87,16 @@ public class CurrencyDataParser {
 
     public enum XchangeRates {
          USD (1.0)
-        ,KWD (3.30)
-        ,BHD (2.65)
-        ,OMR (2.59)
-        ,GBP (0.66)
-        ,JOD (1.41)
-        ,KYD (1.21)
-        ,EUR (1.07)
-        ,CHF (1.03)
-        ,AZN (0.95)
-        ,CAD (0.81);
+        ,KWD (0.3021)
+        ,BHD (0.3772)
+        ,OMR (0.3851)
+        ,GBP (0.6584)
+        ,JOD (0.7089)
+        ,KYD (0.8200)
+        ,EUR (0.8942)
+        ,CHF (0.9785)
+        ,AZN (1.0465)
+        ,CAD (1.3334);
 
         double rate;
 
