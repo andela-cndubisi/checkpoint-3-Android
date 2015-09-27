@@ -323,7 +323,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/period"
-        android:id="@+id/btn."
+        android:id="@+id/btnp"
         android:layout_row="4"
         android:layout_column="2"
         android:gravity="center"

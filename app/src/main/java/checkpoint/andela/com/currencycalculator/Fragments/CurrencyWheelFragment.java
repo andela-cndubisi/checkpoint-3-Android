@@ -15,7 +15,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 import checkpoint.andela.com.currencycalculator.Brain.CurrencyCalculator;
-import checkpoint.andela.com.currencycalculator.Brain.FetchCurrencyRatesTask;
+import checkpoint.andela.com.currencycalculator.FetchCurrencyRatesTask;
 import checkpoint.andela.com.currencycalculator.MainActivity;
 import checkpoint.andela.com.currencycalculator.R;
 
@@ -32,7 +32,7 @@ public class CurrencyWheelFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),
-                R.layout.simple_row,getResources().getStringArray(R.array.currency));
+                R.layout.simple_row, getResources().getStringArray(R.array.currency));
         FetchCurrencyRatesTask task = new FetchCurrencyRatesTask(getResources().getStringArray(R.array.currency));
         task.execute();
         setListAdapter(adapter);
@@ -45,30 +45,29 @@ public class CurrencyWheelFragment extends ListFragment {
         super.onStart();
         myList = getListView();
         myList.setOnItemLongClickListener(onItemLongClickListener);
-        calculator = ((MainActivity)getActivity()).getBrain();
+        calculator = activity.getBrain();
         wCurrency = calculator.getBaseCurrency();
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        TextView textView = (TextView)v;
-        wCurrency = textView.getText().toString();
+        wCurrency = ( (TextView) v).getText().toString();
         calculator.setTmpCurrency(wCurrency);
-        activity.display.currency.setText(wCurrency);
+        activity.setDisplayCurrency(wCurrency);
     }
 
     OnItemLongClickListener onItemLongClickListener = new OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            TextView currency =  (TextView)view;
+            String currency =  ( (TextView) view).getText().toString();
+            NumberFormat numberFormat = NumberFormat.getNumberInstance();
 
             try {
-                double amount = NumberFormat.getInstance().parse(activity.display.getDisplayText()).doubleValue();
-                calculator.setBaseCurrency(currency.getText().toString());
+                double amount = numberFormat.parse(activity.getDisplayText()).doubleValue();
+                calculator.setBaseCurrency(currency);
                 double newAmount = calculator.convert(amount);
-                // cleanup demilter
-                activity.display.currency.setText(currency.getText());
-                activity.display.update(NumberFormat.getInstance().format(newAmount));
+                activity.setDisplayCurrency(currency);
+                activity.updateDisplay(numberFormat.format(newAmount));
             } catch (ParseException e) {
                 return false;
             }

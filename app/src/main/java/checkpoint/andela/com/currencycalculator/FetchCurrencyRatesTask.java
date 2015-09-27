@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator.Brain;
+package checkpoint.andela.com.currencycalculator;
 
 import android.os.AsyncTask;
 
@@ -21,11 +21,9 @@ import checkpoint.andela.com.currencycalculator.CurrencyDataParser;
  * Created by andela-cj on 9/22/15.
  */
 public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
-    private CurrencyDataParser dataParser;
     private String query = "select*from yahoo.finance.xchange where pair in (";
 
     public FetchCurrencyRatesTask(String [] keys){
-        dataParser = new CurrencyDataParser();
         generateQuery(keys);
     }
 
@@ -99,7 +97,7 @@ public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
     @Override
     protected void onPostExecute(String s) {
         try {
-            dataParser.parse(s);
+            new CurrencyDataParser(s).parse();
         } catch (JSONException e) {
             e.printStackTrace();
         }

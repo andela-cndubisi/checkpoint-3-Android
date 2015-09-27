@@ -32,16 +32,17 @@ public class KeypadFragment extends Fragment {
         return v;
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
         brain = ((MainActivity)getActivity()).getBrain();
     }
 
-    public void digitPressed(String digit){
-           brain.addDigit(digit);
-           delegate.update(brain.getResult());
+    public void digitPressed(View v){
+        if (v instanceof Button) {
+            brain.addDigit(((Button) v).getText().toString());
+            delegate.update(brain.getResult());
+        }
     }
 
     public void enterPressed(View v){
@@ -67,10 +68,12 @@ public class KeypadFragment extends Fragment {
             brain.currentOperation  = brain.getOperation(((Button)v).getText().toString());
         }
     }
+
     public void periodPressed(View v){
         brain.addDecimalPoint();
         delegate.update(brain.getResult());
     }
+
     public void negatePressed(View v){
         if(v instanceof Button) {
             brain.negateDigit();

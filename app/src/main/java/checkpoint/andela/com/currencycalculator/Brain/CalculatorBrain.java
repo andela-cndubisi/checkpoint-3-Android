@@ -29,19 +29,26 @@ public class CalculatorBrain {
 
     protected void evaluate(Operation a){
         double result = 0;
-        switch (a){
-            case divide:
-                result = operand.remove(last).doubleValue() / operand.remove(last).doubleValue();
-                break;
-            case minus:
-                result = operand.remove(last).doubleValue() - operand.remove(last).doubleValue();
-                break;
-            case multiply:
-                result = operand.remove(last).doubleValue() * operand.remove(last).doubleValue();
-                break;
-            case add:
-                result = operand.remove(last).doubleValue() + operand.remove(last).doubleValue();
-                break;
+        double first = operand.remove(last).doubleValue();
+        double second = operand.remove(last).doubleValue();
+        try{
+            switch (a){
+                    case divide:
+                        result = first / second;
+                        break;
+                    case minus:
+                        result = first - second;
+                        break;
+                    case multiply:
+                        result = first * second;
+                        break;
+                    case add:
+                        result = first + second;
+                        break;
+            }
+        }catch (ArithmeticException e){
+            temp = "Error";
+            return;
         }
         temp = NumberFormat.getInstance().format(result);
     }

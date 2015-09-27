@@ -8,15 +8,18 @@ import java.util.ArrayList;
 /**
  * Created by andela-cj on 9/22/15.
  */
+
 public class CurrencyDataParser {
     private static ArrayList<CurrencyRates> rates ;
     private JSONArray currentRates;
+    String json;
 
-    public CurrencyDataParser(){
+    public CurrencyDataParser(String json){
+        this.json = json;
         rates = new ArrayList<>();
     }
 
-    public void parse(String json) throws JSONException {
+    public void parse() throws JSONException {
         if (json != null) {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject query = jsonObject.getJSONObject("query");
@@ -58,6 +61,7 @@ public class CurrencyDataParser {
         }
         return null;
     }
+
     public class CurrencyRates{
         private String currency;
         private double rate;
@@ -94,5 +98,4 @@ public class CurrencyDataParser {
             rate = x;
         }
     }
-
 }

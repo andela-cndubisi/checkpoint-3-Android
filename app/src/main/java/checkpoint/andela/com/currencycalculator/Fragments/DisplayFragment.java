@@ -16,8 +16,9 @@ import android.widget.TextView;
  */
 public class DisplayFragment extends Fragment implements KeypadFragment.DisplayDelegate {
     private TextView display;
-    public TextView currency;
+    private TextView currency;
     private TextView memory;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,15 +31,11 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
         return v;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    public void setCurrency(String cur){
+        currency.setText(cur);
     }
-
     public void update(String result) {
         display.setText(result);
     }
-
-
     public String getDisplayText(){ return display.getText().toString(); }
 }
