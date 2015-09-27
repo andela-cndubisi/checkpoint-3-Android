@@ -14,17 +14,17 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-import checkpoint.andela.com.currencycalculator.Brain.CurrencyCalculator;
-import checkpoint.andela.com.currencycalculator.FetchCurrencyRatesTask;
+import checkpoint.andela.com.currencycalculator.Brain.CurrencyConverter;
+import checkpoint.andela.com.currencycalculator.TaskCurrencyRates;
 import checkpoint.andela.com.currencycalculator.MainActivity;
 import checkpoint.andela.com.currencycalculator.R;
 
 /**
  * Created by andela-cj on 9/22/15.
  */
-public class CurrencyWheelFragment extends ListFragment {
+public class CurrencyFragment extends ListFragment {
 
-    CurrencyCalculator calculator;
+    CurrencyConverter converter;
     String wCurrency;
     ListView myList;
     MainActivity activity;
@@ -33,7 +33,7 @@ public class CurrencyWheelFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),
                 R.layout.simple_row, getResources().getStringArray(R.array.currency));
-        FetchCurrencyRatesTask task = new FetchCurrencyRatesTask(getResources().getStringArray(R.array.currency));
+        TaskCurrencyRates task = new TaskCurrencyRates(getResources().getStringArray(R.array.currency));
         task.execute();
         setListAdapter(adapter);
         activity = (MainActivity)getActivity();
@@ -45,14 +45,14 @@ public class CurrencyWheelFragment extends ListFragment {
         super.onStart();
         myList = getListView();
         myList.setOnItemLongClickListener(onItemLongClickListener);
-        calculator = activity.getBrain();
-        wCurrency = calculator.getBaseCurrency();
+        converter = activity.getBrain();
+        wCurrency = converter.getBaseCurrency();
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         wCurrency = ( (TextView) v).getText().toString();
-        calculator.setTmpCurrency(wCurrency);
+        converter.setTempCurrency(wCurrency);
         activity.setDisplayCurrency(wCurrency);
     }
 
@@ -64,10 +64,12 @@ public class CurrencyWheelFragment extends ListFragment {
 
             try {
                 double amount = numberFormat.parse(activity.getDisplayText()).doubleValue();
-                calculator.setBaseCurrency(currency);
-                double newAmount = calculator.convert(amount);
+                converter.setBaseCurrency(currency);
+                double newAmount = converter.convert(amount);
                 activity.setDisplayCurrency(currency);
                 activity.updateDisplay(numberFormat.format(newAmount));
+                converter.setTempCurrency(currency);
+
             } catch (ParseException e) {
                 return false;
             }

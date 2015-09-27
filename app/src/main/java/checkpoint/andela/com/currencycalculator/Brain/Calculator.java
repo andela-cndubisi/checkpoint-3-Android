@@ -8,7 +8,7 @@ import java.util.Hashtable;
 /**
  * Created by andela-cj on 9/21/15.
  */
-public class CalculatorBrain {
+public class Calculator {
     private final int last = 0;
     protected String temp = "";
     private Hashtable<String, Operation> operation = new Hashtable<>();
@@ -16,7 +16,7 @@ public class CalculatorBrain {
     public Operation currentOperation;
     boolean isTyping = false;
 
-    public CalculatorBrain(){
+    public Calculator(){
         setupOperation();
     }
 

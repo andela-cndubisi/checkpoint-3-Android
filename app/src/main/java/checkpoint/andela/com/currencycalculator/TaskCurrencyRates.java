@@ -20,10 +20,10 @@ import checkpoint.andela.com.currencycalculator.CurrencyDataParser;
 /**
  * Created by andela-cj on 9/22/15.
  */
-public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
+public class TaskCurrencyRates extends AsyncTask<String, Void , String> {
     private String query = "select*from yahoo.finance.xchange where pair in (";
 
-    public FetchCurrencyRatesTask(String [] keys){
+    public TaskCurrencyRates(String[] keys){
         generateQuery(keys);
     }
 
@@ -75,10 +75,13 @@ public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
             return currencyRate;
 
         } catch (MalformedURLException e) {
+            new CurrencyDataParser(null).parse();
             return null;
         } catch (ProtocolException e) {
+            new CurrencyDataParser(null).parse();
             return null;
         } catch (IOException e) {
+            new CurrencyDataParser(null).parse();
             return null;
         } finally {
             if (urlConnection !=null){
@@ -96,10 +99,7 @@ public class FetchCurrencyRatesTask extends AsyncTask<String, Void , String> {
 
     @Override
     protected void onPostExecute(String s) {
-        try {
-            new CurrencyDataParser(s).parse();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        CurrencyDataParser a = new CurrencyDataParser(s);
+        a.parse();
     }
 }

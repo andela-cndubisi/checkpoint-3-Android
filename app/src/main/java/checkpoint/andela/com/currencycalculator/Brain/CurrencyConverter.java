@@ -8,35 +8,35 @@ import checkpoint.andela.com.currencycalculator.CurrencyDataParser;
 /**
  * Created by andela-cj on 9/23/15.
  */
-public class CurrencyCalculator extends CalculatorBrain {
+public class CurrencyConverter extends Calculator {
 
-    public CurrencyCalculator(){
+    public CurrencyConverter(){
         super();
     }
 
     String baseCurrency = "USD";
 
-    String tmpCurrency = baseCurrency;
+    String tempCurrency = baseCurrency;
 
-    public void setTmpCurrency(String tmpCurrency) {
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tmpCurrency);
-        this.tmpCurrency = cr.getCurrency();
+    public void setTempCurrency(String tempCurrency) {
+        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tempCurrency);
+        this.tempCurrency = cr.getCurrency();
     }
 
 
     public double convert(double amount){
-        if (!baseCurrency.equals(tmpCurrency)){
-         double currentInBase = convertToUSD(amount);
-         CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tmpCurrency);
-           return cr.getRate() * currentInBase;
+        if (!baseCurrency.equals(tempCurrency)){
+         double currentInBase = convertToBase(amount);
+         CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tempCurrency);
+           return currentInBase/ cr.getRate();
         }
 
         return amount;
     }
 
-    private double convertToUSD(double amount) {
+    private double convertToBase(double amount) {
         CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
-        return amount/cr.getRate();
+        return amount*cr.getRate();
     }
 
     public void setBaseCurrency(String baseCurrency) {
@@ -61,7 +61,7 @@ public class CurrencyCalculator extends CalculatorBrain {
         }
         if(operand.size() > 1){
             super.evaluate(currentOperation);
-            tmpCurrency = baseCurrency;
+            tempCurrency = baseCurrency;
         }
     }
 
