@@ -24,7 +24,8 @@
         android:id="@+id/currency"
         android:gravity="bottom|left"
         android:layout_alignParentBottom="true"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:padding="10dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -37,5 +38,6 @@
         android:lines="1"
         android:maxLines="1"
         android:minLines="1"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:padding="15dp" />
 </RelativeLayout>

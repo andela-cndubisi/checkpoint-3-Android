@@ -12,6 +12,8 @@ import checkpoint.andela.com.currencycalculator.MainActivity;
 import checkpoint.andela.com.currencycalculator.R;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by andela-cj on 9/27/15.
@@ -34,6 +36,8 @@ public class DisplayFragmentTest {
     public void testCurrency(){
         //  Given I am a User
         //  Then I should be able to see a screen
+        assertTrue(display.isInLayout());
+        assertNotNull(display);
         //  And an initail currency of 'USD'
         assertEquals("USD",display.getCurrency());
     }
@@ -42,6 +46,8 @@ public class DisplayFragmentTest {
     public void testDisplayText(){
         //  Given I am a User
         //  Then I should be able to see a screen
+        assertTrue(display.isInLayout());
+        assertNotNull(display);
         //  And an initial value of '0'
         assertEquals("0", display.getDisplayText());
     }
@@ -50,6 +56,8 @@ public class DisplayFragmentTest {
     public void testUpadate(){
         //  Given I am a User
         //  Then I should be able to see a screen
+        assertTrue(display.isInLayout());
+        assertNotNull(display);
         //  And an initial value of '0'
         assertEquals("0", display.getDisplayText());
         //  When I tap '2' on the keypad

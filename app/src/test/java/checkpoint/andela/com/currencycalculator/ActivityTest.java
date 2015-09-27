@@ -12,7 +12,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import checkpoint.andela.com.currencycalculator.Fragments.CurrencyWheelFragment;
+import checkpoint.andela.com.currencycalculator.Fragments.CurrencyFragment;
 import checkpoint.andela.com.currencycalculator.Fragments.DisplayFragment;
 import checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment;
 
@@ -63,7 +63,7 @@ public class ActivityTest {
     */
     @Test
     public void testCurrencyList(){
-        CurrencyWheelFragment wheel = (CurrencyWheelFragment)activity.getFragmentManager().findFragmentById(R.id.currencylist);
+        CurrencyFragment wheel = (CurrencyFragment)activity.getFragmentManager().findFragmentById(R.id.currencylist);
         //  Then I should see list of currency option
         assertTrue(wheel.isAdded());
         assertNotNull(wheel);

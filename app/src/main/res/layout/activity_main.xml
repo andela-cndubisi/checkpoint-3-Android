@@ -34,10 +34,10 @@
             tools:layout="@layout/keypadfragment"
         />
         <fragment
-            tools:layout="@layout/currencywheelfragment"
+            tools:layout="@layout/currencyfragment"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:name="checkpoint.andela.com.currencycalculator.Fragments.CurrencyWheelFragment"
+            android:name="checkpoint.andela.com.currencycalculator.Fragments.CurrencyFragment"
             android:id="@+id/currencylist"
         />
     </LinearLayout>

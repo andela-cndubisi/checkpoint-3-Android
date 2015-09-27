@@ -5,22 +5,22 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import checkpoint.andela.com.currencycalculator.Brain.CurrencyCalculator;
-import checkpoint.andela.com.currencycalculator.Fragments.CurrencyWheelFragment;
+import checkpoint.andela.com.currencycalculator.Brain.CurrencyConverter;
+import checkpoint.andela.com.currencycalculator.Fragments.CurrencyFragment;
 import checkpoint.andela.com.currencycalculator.Fragments.DisplayFragment;
 import checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment;
 
 public class MainActivity extends ActionBarActivity {
-    private CurrencyCalculator brain;
+    private CurrencyConverter brain;
     public DisplayFragment display;
     private KeypadFragment keypad;
-    private CurrencyWheelFragment currencyWheel;
+    private CurrencyFragment currencyWheel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        brain = new CurrencyCalculator();
+        brain = new CurrencyConverter();
         setUpFragment();
     }
 
@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
         FragmentManager fm = getFragmentManager();
         display = (DisplayFragment)fm.findFragmentById(R.id.screen);
         keypad = (KeypadFragment)fm.findFragmentById(R.id.keypad);
-        currencyWheel = (CurrencyWheelFragment)fm.findFragmentById(R.id.currencylist);
+        currencyWheel = (CurrencyFragment)fm.findFragmentById(R.id.currencylist);
         keypad.setDisplayDelegate(display);
     }
 
@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
     public void operationPressed(View v){ keypad.operationPressed(v); }
     public void periodPressed(View v) { keypad.periodPressed(v); }
     public void negatePressed(View v) { keypad.negatePressed(v);  }
-    public CurrencyCalculator getBrain() { return brain; }
+    public CurrencyConverter getBrain() { return brain; }
     public void enterPressed(View v){
         keypad.enterPressed(v);
         display.setCurrency(brain.getBaseCurrency());

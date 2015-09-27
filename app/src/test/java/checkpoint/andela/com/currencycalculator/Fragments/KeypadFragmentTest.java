@@ -26,7 +26,7 @@ public class KeypadFragmentTest {
     @Before
     public void setUp() throws Exception {
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
         activity = Robolectric.buildActivity(MainActivity.class).create().start().get();
         KeypadFragment keypad = (KeypadFragment)activity.getFragmentManager().findFragmentById(R.id.keypad);
         display = keypad.getDisplayDelegate();
@@ -40,7 +40,8 @@ public class KeypadFragmentTest {
     @Test
     public void testDigitButtons(){
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
+        //    And I see the calculator buttons and screen
         Button btn0 = (Button)activity.findViewById(R.id.btn0);
         Button btn1 = (Button)activity.findViewById(R.id.btn1);
         Button btn2 = (Button)activity.findViewById(R.id.btn2);
@@ -74,7 +75,8 @@ public class KeypadFragmentTest {
     @Test
     public void testAddition(){
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
+        //    And I see the calculator buttons and screen
         //    And I tap '2'
         Button btn2 = (Button)activity.findViewById(R.id.btn2);
         btn2.performClick();
@@ -102,7 +104,8 @@ public class KeypadFragmentTest {
     @Test
     public void testSubtraction(){
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
+        //    And I see the calculator buttons and screen
         //    And I tap 5
         Button btn5 = (Button)activity.findViewById(R.id.btn5);
         btn5.performClick();
@@ -131,7 +134,8 @@ public class KeypadFragmentTest {
     @Test
     public void testMultiplication(){
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
+        //    And I see the calculator buttons and screen
         //    And I tap 5
         Button btn5 = (Button)activity.findViewById(R.id.btn5);
         btn5.performClick();
@@ -160,7 +164,8 @@ public class KeypadFragmentTest {
     @Test
     public void testDivision(){
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
+        //    And I see the calculator buttons and screen
         //    And I tap '5'
         Button btn5 = (Button)activity.findViewById(R.id.btn5);
         btn5.performClick();
@@ -191,7 +196,8 @@ public class KeypadFragmentTest {
     @Test
     public void testClear(){
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
+        //    And I see the calculator buttons and screen
         //    And I tap '5'
         Button btn5 = (Button)activity.findViewById(R.id.btn5);
         btn5.performClick();
@@ -224,7 +230,8 @@ public class KeypadFragmentTest {
     @Test
     public void testDecimal(){
         //    Given I am a User
-        //    When I see the calculator buttons and screen
+        //    When I open the calculator app
+        //    And I see the calculator buttons and screen
         Button btnp = (Button)activity.findViewById(R.id.btnp);
         Button btn5 = (Button)activity.findViewById(R.id.btn5);
         Button btn6 = (Button)activity.findViewById(R.id.btn6);
