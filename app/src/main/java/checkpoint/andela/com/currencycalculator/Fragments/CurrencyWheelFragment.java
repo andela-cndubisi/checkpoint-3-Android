@@ -56,7 +56,7 @@ public class CurrencyWheelFragment extends ListFragment {
         activity.setDisplayCurrency(wCurrency);
     }
 
-    OnItemLongClickListener onItemLongClickListener = new OnItemLongClickListener() {
+     OnItemLongClickListener onItemLongClickListener = new OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             String currency =  ( (TextView) view).getText().toString();

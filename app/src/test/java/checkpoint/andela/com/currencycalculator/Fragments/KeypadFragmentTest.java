@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator;
+package checkpoint.andela.com.currencycalculator.Fragments;
 
 /**
  * Created by andela-cj on 9/26/15.
@@ -11,8 +11,11 @@ import  static org.junit.Assert.*;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+
+import checkpoint.andela.com.currencycalculator.BuildConfig;
 import checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment.DisplayDelegate;
-import checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment;
+import checkpoint.andela.com.currencycalculator.MainActivity;
+import checkpoint.andela.com.currencycalculator.R;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)

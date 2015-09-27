@@ -38,4 +38,6 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
         display.setText(result);
     }
     public String getDisplayText(){ return display.getText().toString(); }
+    public String getCurrency(){ return currency.getText().toString(); }
+
 }
