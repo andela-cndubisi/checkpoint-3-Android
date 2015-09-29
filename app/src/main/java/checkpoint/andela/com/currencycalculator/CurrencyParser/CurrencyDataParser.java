@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator;
+package checkpoint.andela.com.currencycalculator.CurrencyParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 public class CurrencyDataParser {
-    private static ArrayList<CurrencyRates> rates ;
+    private static ArrayList<Currency> rates ;
     private JSONArray currentRates;
     String json;
 
@@ -43,7 +43,7 @@ public class CurrencyDataParser {
 
     private void generateRates() throws JSONException {
         for(int i = 0; i < currentRates.length(); i++){
-            rates.add(new CurrencyRates(cleanName(currentRates.getJSONObject(i).getString("Name")),
+            rates.add(new Currency(cleanName(currentRates.getJSONObject(i).getString("Name")),
                     currentRates.getJSONObject(i).getDouble("Rate")));
         }
     }
@@ -55,53 +55,20 @@ public class CurrencyDataParser {
     }
 
     private void generateDefaultRates(){
-            for (XchangeRates xrate: XchangeRates.values() ) {
-                rates.add(new CurrencyRates(xrate.toString(), xrate.rate));
+            for (ExchangeRates xrate: ExchangeRates.values() ) {
+                rates.add(new Currency(xrate.toString(), xrate.rate));
             }
     }
 
-    public static CurrencyRates getCurrencyRate(String cur){
-        for (CurrencyRates cr : rates){
+    public static Currency getCurrencyRate(String cur){
+        for (Currency cr : rates){
             if (cr.getCurrency().equals(cur))
                 return cr;
         }
         return null;
     }
 
-    public class CurrencyRates{
-        private String currency;
-        private double rate;
 
-        public CurrencyRates(String currency, double rate){
-            this.currency = currency;
-            this.rate = rate;
-        }
 
-        public String getCurrency(){
-            return currency;
-        }
-        public double getRate(){
-            return rate;
-        }
-    }
 
-    public enum XchangeRates {
-         USD (1.0)
-        ,KWD (0.3021)
-        ,BHD (0.3772)
-        ,OMR (0.3851)
-        ,GBP (0.6584)
-        ,JOD (0.7089)
-        ,KYD (0.8200)
-        ,EUR (0.8942)
-        ,CHF (0.9785)
-        ,AZN (1.0465)
-        ,CAD (1.3334);
-
-        double rate;
-
-        XchangeRates(double x) {
-            rate = x;
-        }
-    }
 }

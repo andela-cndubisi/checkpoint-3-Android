@@ -3,7 +3,8 @@ package checkpoint.andela.com.currencycalculator.Brain;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-import checkpoint.andela.com.currencycalculator.CurrencyDataParser;
+import checkpoint.andela.com.currencycalculator.CurrencyParser.Currency;
+import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyDataParser;
 
 /**
  * Created by andela-cj on 9/23/15.
@@ -19,7 +20,7 @@ public class CurrencyConverter extends Calculator {
     String tempCurrency = baseCurrency;
 
     public void setTempCurrency(String tempCurrency) {
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tempCurrency);
+        Currency cr = CurrencyDataParser.getCurrencyRate(tempCurrency);
         this.tempCurrency = cr.getCurrency();
     }
 
@@ -27,7 +28,7 @@ public class CurrencyConverter extends Calculator {
     public double convert(double amount){
         if (!baseCurrency.equals(tempCurrency)){
          double currentInBase = convertToBase(amount);
-         CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(tempCurrency);
+         Currency cr = CurrencyDataParser.getCurrencyRate(tempCurrency);
            return currentInBase/ cr.getRate();
         }
 
@@ -35,12 +36,12 @@ public class CurrencyConverter extends Calculator {
     }
 
     private double convertToBase(double amount) {
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
+        Currency cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
         return amount*cr.getRate();
     }
 
     public void setBaseCurrency(String baseCurrency) {
-        CurrencyDataParser.CurrencyRates cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
+        Currency cr = CurrencyDataParser.getCurrencyRate(baseCurrency);
         this.baseCurrency = cr.getCurrency();;
     }
 

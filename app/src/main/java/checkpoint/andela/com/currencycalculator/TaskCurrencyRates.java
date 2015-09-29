@@ -2,8 +2,6 @@ package checkpoint.andela.com.currencycalculator;
 
 import android.os.AsyncTask;
 
-import org.json.JSONException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +13,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import checkpoint.andela.com.currencycalculator.CurrencyDataParser;
+import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyDataParser;
 
 /**
  * Created by andela-cj on 9/22/15.
