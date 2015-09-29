@@ -61,9 +61,9 @@ public class CurrencyDataParser {
     }
 
     public static CurrencyRates getCurrencyRate(String cur){
-        for (CurrencyRates crat : rates){
-            if (crat.getCurrency().equals(cur))
-                return crat;
+        for (CurrencyRates cr : rates){
+            if (cr.getCurrency().equals(cur))
+                return cr;
         }
         return null;
     }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="instructions">
+        Tap on a currency to switch computing currency.\n\n\n
+        Press and hold on a currency to change your  Base/Resulting Currency
+    </string>
+    <string name="tip">Quick Currency Wheel\n\n\n</string>>
+</resources>

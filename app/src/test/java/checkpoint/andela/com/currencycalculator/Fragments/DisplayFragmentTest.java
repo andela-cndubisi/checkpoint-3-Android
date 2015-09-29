@@ -53,9 +53,9 @@ public class DisplayFragmentTest {
     }
 
     @Test
-    public void testUpadate(){
+    public void testUpdate(){
         //  Given I am a User
-        //  Then I should be able to see a screen
+        //  Then I should see a screen for displaying results
         assertTrue(display.isInLayout());
         assertNotNull(display);
         //  And an initial value of '0'

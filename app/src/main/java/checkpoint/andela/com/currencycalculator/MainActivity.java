@@ -1,9 +1,18 @@
 package checkpoint.andela.com.currencycalculator;
 
+import android.annotation.TargetApi;
 import android.app.FragmentManager;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionItemTarget;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.PointTarget;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import checkpoint.andela.com.currencycalculator.Brain.CurrencyConverter;
 import checkpoint.andela.com.currencycalculator.Fragments.CurrencyFragment;
@@ -33,6 +42,16 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+    @TargetApi(19)
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new ShowcaseView.Builder(this).setTarget(new ViewTarget(currencyWheel.getView().getId(),this))
+                .setContentTitle(R.string.tip)
+                .setContentText(R.string.instructions)
+                .hideOnTouchOutside()
+                .build();
+    }
 
     public void setDisplayCurrency(String curncy){
         display.setCurrency(curncy);

@@ -39,5 +39,5 @@
         android:maxLines="1"
         android:minLines="1"
         android:textColor="@android:color/white"
-        android:padding="15dp" />
+        android:padding="10dp" />
 </RelativeLayout>

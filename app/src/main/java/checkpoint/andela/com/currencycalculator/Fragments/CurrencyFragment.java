@@ -10,6 +10,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -25,9 +26,10 @@ import checkpoint.andela.com.currencycalculator.R;
 public class CurrencyFragment extends ListFragment {
 
     CurrencyConverter converter;
-    String wCurrency;
+    String currency;
     ListView myList;
     MainActivity activity;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,14 +48,16 @@ public class CurrencyFragment extends ListFragment {
         myList = getListView();
         myList.setOnItemLongClickListener(onItemLongClickListener);
         converter = activity.getBrain();
-        wCurrency = converter.getBaseCurrency();
+        currency = converter.getBaseCurrency();
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        wCurrency = ( (TextView) v).getText().toString();
-        converter.setTempCurrency(wCurrency);
-        activity.setDisplayCurrency(wCurrency);
+        currency = ( (TextView) v).getText().toString();
+        converter.setTempCurrency(currency);
+        activity.setDisplayCurrency(currency);
+        displayFeedBack("Computing currency: " + currency);
+
     }
 
      OnItemLongClickListener onItemLongClickListener = new OnItemLongClickListener() {
@@ -69,7 +73,7 @@ public class CurrencyFragment extends ListFragment {
                 activity.setDisplayCurrency(currency);
                 activity.updateDisplay(numberFormat.format(newAmount));
                 converter.setTempCurrency(currency);
-
+                displayFeedBack("Resulting currency: " + currency);
             } catch (ParseException e) {
                 return false;
             }
@@ -77,4 +81,9 @@ public class CurrencyFragment extends ListFragment {
             return true;
         }
     };
+
+    public void displayFeedBack(String text){
+        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+
+    }
 }
