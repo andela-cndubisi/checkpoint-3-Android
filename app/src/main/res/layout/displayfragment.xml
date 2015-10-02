@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/layoutboarder">
+    android:layout_height="wrap_content"
+    android:background="@drawable/layoutboader">
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/currencybase"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:text="@string/currency"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:layout_marginLeft="2dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/displayMemory"
         android:text="@string/zero"
+        android:layout_gravity="left"
         android:lines="1"
-        android:layout_alignParentTop="true"
-        android:textSize="50sp"
-        android:layout_above="@+id/display"
-        android:textColor="@android:color/white" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/display"
-        android:layout_alignParentLeft="true"
-        android:text="USD"
-        android:textSize="30sp"
-        android:id="@+id/currency"
-        android:gravity="bottom|left"
-        android:layout_alignParentBottom="true"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:padding="10dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/zero"
-        android:id="@+id/display"
-        android:gravity="bottom|right"
-        android:layout_alignParentRight="true"
-        android:textSize="50sp"
-        android:lines="1"
-        android:maxLines="1"
-        android:minLines="1"
-        android:textColor="@android:color/white"
-        android:padding="10dp" />
-</RelativeLayout>
+        android:gravity="left" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/spinnerandresult"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerCurrency"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zero"
+                android:layout_gravity="right"
+                android:id="@+id/display"
+                android:gravity="bottom|right"
+                android:textSize="50sp"
+                android:layout_marginTop="-5dp"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:textColor="@android:color/white"/>
+            </LinearLayout>
+</LinearLayout>

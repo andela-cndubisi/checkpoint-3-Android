@@ -13,4 +13,17 @@
         <item name="CAD">CAD</item>
         <item name="USD">USD</item>
     </string-array>
+    <string-array name="currencynames">
+        <item name="KWD">Kuwaiti dinar</item>
+        <item name="BHD">Bahraini Dinar</item>
+        <item name="OMR">Omani rial</item>
+        <item name="GBP">British Pound Sterling</item>
+        <item name="JOD">Jordanian Dinar</item>
+        <item name="KYD">Cayman Islands Dollar</item>
+        <item name="EUR">Euro</item>
+        <item name="CHF">Swiss Franc</item>
+        <item name="AZN">Azerbaijani Manat</item>
+        <item name="CAD">Canadian Dollar</item>
+        <item name="USD">U.S Dollar</item>
+    </string-array>
 </resources>

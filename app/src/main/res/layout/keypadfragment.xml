@@ -17,12 +17,11 @@
         android:text="@string/clear"
         android:id="@+id/btnC"
         android:textSize="40sp"
-
         android:gravity="center"
         android:textColor="@android:color/white"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
-        android:layout_weight="1" />
+        android:layout_weight="2" />
 
     <Button
         android:onClick="negatePressed"
@@ -48,24 +47,12 @@
         android:id="@+id/btnDivide"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:background="@drawable/operandborder"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_weight="1" />
-
-    <Button
-        android:textSize="40sp"
-        android:onClick="operationPressed"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:text="@string/multiply"
-        android:id="@+id/btnMultiply"
-        android:gravity="center"
-        android:textColor="@android:color/white"
         android:background="@drawable/operationborder"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_weight="1" />
+
+
 </LinearLayout>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -115,20 +102,20 @@
         android:layout_columnWeight="1"
         android:layout_weight="1" />
 
-    <Button
+        <Button
+            android:textSize="40sp"
+            android:onClick="operationPressed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/multiply"
+            android:id="@+id/btnMultiply"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@drawable/operationborder"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_weight="1" />
 
-        android:textSize="40sp"
-        android:onClick="operationPressed"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:text="@string/minus"
-        android:id="@+id/btnMinus"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:background="@drawable/operationborder"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_weight="1" />
 
     </LinearLayout>
     <LinearLayout
@@ -181,32 +168,24 @@
         android:layout_columnWeight="1"
         android:layout_weight="1" />
 
-    <Button
-        android:textSize="40sp"
-        android:onClick="operationPressed"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:text="@string/add"
-        android:id="@+id/btnAdd"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:background="@drawable/operationborder"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_weight="1" />
+        <Button
+
+            android:textSize="40sp"
+            android:onClick="operationPressed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/minus"
+            android:id="@+id/btnMinus"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@drawable/operationborder"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_weight="1" />
+
     </LinearLayout>
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="3">
+
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
@@ -255,6 +234,20 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_weight="1" />
+
+    <Button
+        android:textSize="40sp"
+        android:onClick="operationPressed"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="@string/add"
+        android:id="@+id/btnAdd"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@drawable/operationborder"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_weight="1" />
     </LinearLayout>
 
 
@@ -291,19 +284,17 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_weight="1" />
-        </LinearLayout>
-        </LinearLayout>
-    <Button
-        android:textSize="40sp"
-        android:onClick="enterPressed"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:text="@string/equals"
-        android:id="@+id/btnE"
-        android:textColor="@android:color/white"
-        android:background="@drawable/operationborder"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_weight="1" />
+        <Button
+            android:textSize="40sp"
+            android:onClick="enterPressed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/equals"
+            android:id="@+id/btnE"
+            android:textColor="@android:color/white"
+            android:background="@drawable/operationborder"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

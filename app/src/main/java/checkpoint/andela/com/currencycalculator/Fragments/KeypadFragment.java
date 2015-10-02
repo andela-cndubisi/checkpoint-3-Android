@@ -7,12 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import checkpoint.andela.com.currencycalculator.Brain.Calculator;
-import checkpoint.andela.com.currencycalculator.Brain.CurrencyConverter;
+import checkpoint.andela.com.currencycalculator.Model.Calculator;
 import checkpoint.andela.com.currencycalculator.MainActivity;
 import checkpoint.andela.com.currencycalculator.R;
-
-import static java.lang.Character.isDigit;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -36,7 +33,7 @@ public class KeypadFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        brain = ((MainActivity)getActivity()).getBrain();
+        brain = ((MainActivity)getActivity()).getCalculator();
     }
 
     public void digitPressed(View v){
@@ -64,9 +61,10 @@ public class KeypadFragment extends Fragment {
 
     public void operationPressed(View v){
         if(v instanceof Button){
+            brain.currentOperation  = brain.getOperation(((Button)v).getText().toString());
             brain.toggleIsTyping();
             delegate.update(brain.getResult());
-            brain.currentOperation  = brain.getOperation(((Button)v).getText().toString());
+
         }
     }
 

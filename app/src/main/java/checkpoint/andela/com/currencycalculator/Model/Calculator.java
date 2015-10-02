@@ -1,4 +1,4 @@
-package checkpoint.andela.com.currencycalculator.Brain;
+package checkpoint.andela.com.currencycalculator.Model;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -10,7 +10,7 @@ import java.util.Hashtable;
  */
 public class Calculator {
     private final int last = 0;
-    protected String temp = "";
+    protected String temp = "0";
     private Hashtable<String, Operation> operation = new Hashtable<>();
     protected ArrayList<Number> operand = new ArrayList<>();
     public Operation currentOperation;
@@ -94,19 +94,25 @@ public class Calculator {
     }
 
     public void toggleIsTyping() {
-        isTyping = false;
-        try {
-            operand.add(NumberFormat.getInstance().parse(temp));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if(operand.size() >1 ){
-            evaluate(currentOperation);
+        if (isTyping){
+            isTyping = false;
+            try {
+                operand.add(NumberFormat.getInstance().parse(temp));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if(operand.size() >1){
+                evaluate(currentOperation);
+            }
         }
     }
 
     public String getResult(){
         return temp;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp;
     }
 
     private enum Operation{

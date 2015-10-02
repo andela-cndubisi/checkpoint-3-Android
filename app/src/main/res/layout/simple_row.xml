@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/currency"
-    android:textColor="@android:color/white"
-    android:textSize="20sp"
-    android:password="false"
-    android:padding="10dp"
-    android:background="#2a5a61"
-    android:gravity="center"
-    android:paddingLeft="10dp">
-
-</TextView>
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currency"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:password="false"
+        android:paddingTop="5dp"
+        android:background="#2a5a61"
+        android:id="@+id/currency"
+        android:gravity="center">
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currency"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:password="false"
+        android:background="#2a5a61"
+        android:paddingBottom="5dp"
+        android:id="@+id/currencyDescriptor"
+        android:gravity="center"
+        android:paddingLeft="10dp">
+    </TextView>
+</LinearLayout>

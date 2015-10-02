@@ -13,7 +13,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyDataParser;
+import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
 
 /**
  * Created by andela-cj on 9/22/15.
@@ -23,10 +23,11 @@ public class TaskCurrencyRates extends AsyncTask<String, Void , String> {
 
     public TaskCurrencyRates(String[] keys){
         generateQuery(keys);
+        new CurrencyParser(null).parse();
     }
 
     private void generateQuery(String []keys){
-        String Base = "USD";
+        String Base = CurrencyParser.baseCurrency;
 
         for (int i = 0; i< keys.length; i++){
             query += "\""+ Base + keys[i]+"\"";
@@ -73,13 +74,13 @@ public class TaskCurrencyRates extends AsyncTask<String, Void , String> {
             return currencyRate;
 
         } catch (MalformedURLException e) {
-            new CurrencyDataParser(null).parse();
+            new CurrencyParser(null).parse();
             return null;
         } catch (ProtocolException e) {
-            new CurrencyDataParser(null).parse();
+            new CurrencyParser(null).parse();
             return null;
         } catch (IOException e) {
-            new CurrencyDataParser(null).parse();
+            new CurrencyParser(null).parse();
             return null;
         } finally {
             if (urlConnection !=null){
@@ -97,7 +98,6 @@ public class TaskCurrencyRates extends AsyncTask<String, Void , String> {
 
     @Override
     protected void onPostExecute(String s) {
-        CurrencyDataParser a = new CurrencyDataParser(s);
-        a.parse();
+        new CurrencyParser(s).parse();
     }
 }

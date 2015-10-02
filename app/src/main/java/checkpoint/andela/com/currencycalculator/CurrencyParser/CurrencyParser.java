@@ -9,12 +9,13 @@ import java.util.ArrayList;
  * Created by andela-cj on 9/22/15.
  */
 
-public class CurrencyDataParser {
+public class CurrencyParser {
+    public final static String baseCurrency = "USD";
     private static ArrayList<Currency> rates ;
     private JSONArray currentRates;
     String json;
 
-    public CurrencyDataParser(String json){
+    public CurrencyParser(String json){
         this.json = json;
         rates = new ArrayList<>();
     }
@@ -36,20 +37,22 @@ public class CurrencyDataParser {
                 e.printStackTrace();
             }
 
-        }else {
+        } else {
             generateDefaultRates();
         }
     }
 
     private void generateRates() throws JSONException {
         for(int i = 0; i < currentRates.length(); i++){
-            rates.add(new Currency(cleanName(currentRates.getJSONObject(i).getString("Name")),
-                    currentRates.getJSONObject(i).getDouble("Rate")));
+
+            JSONObject temp = currentRates.getJSONObject(i);
+            rates.add(new Currency(cleanName(temp.getString("Name")),
+                    temp.getDouble("Rate")));
         }
     }
 
     private String cleanName(String name){
-        String base = "USD/";
+        String base = baseCurrency +"/";
         name = name.substring(base.length());
         return name;
     }

@@ -6,25 +6,21 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
-
-import checkpoint.andela.com.currencycalculator.Brain.CurrencyConverter;
-import checkpoint.andela.com.currencycalculator.Fragments.CurrencyFragment;
+import checkpoint.andela.com.currencycalculator.Model.Calculator;
+import checkpoint.andela.com.currencycalculator.Model.CurrencyConverter;
 import checkpoint.andela.com.currencycalculator.Fragments.DisplayFragment;
 import checkpoint.andela.com.currencycalculator.Fragments.KeypadFragment;
 
 public class MainActivity extends ActionBarActivity {
-    private CurrencyConverter brain;
+    public CurrencyConverter converter;
     public DisplayFragment display;
     private KeypadFragment keypad;
-    private CurrencyFragment currencyWheel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        brain = new CurrencyConverter();
+        converter = new CurrencyConverter();
         setUpFragment();
     }
 
@@ -32,7 +28,6 @@ public class MainActivity extends ActionBarActivity {
         FragmentManager fm = getFragmentManager();
         display = (DisplayFragment)fm.findFragmentById(R.id.screen);
         keypad = (KeypadFragment)fm.findFragmentById(R.id.keypad);
-        currencyWheel = (CurrencyFragment)fm.findFragmentById(R.id.currencylist);
         keypad.setDisplayDelegate(display);
     }
 
@@ -41,15 +36,6 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        new ShowcaseView.Builder(this).setTarget(new ViewTarget(currencyWheel.getView().getId(),this))
-                .setContentTitle(R.string.tip)
-                .setContentText(R.string.instructions)
-                .hideOnTouchOutside()
-                .build();
-    }
-
-    public void setDisplayCurrency(String curncy){
-        display.setCurrency(curncy);
     }
 
     public String getDisplayText(){
@@ -67,9 +53,6 @@ public class MainActivity extends ActionBarActivity {
     public void operationPressed(View v){ keypad.operationPressed(v); }
     public void periodPressed(View v) { keypad.periodPressed(v); }
     public void negatePressed(View v) { keypad.negatePressed(v);  }
-    public CurrencyConverter getBrain() { return brain; }
-    public void enterPressed(View v){
-        keypad.enterPressed(v);
-        display.setCurrency(brain.getBaseCurrency());
-    }
+    public Calculator getCalculator() { return converter.calculator; }
+    public void enterPressed(View v){ keypad.enterPressed(v); }
 }
