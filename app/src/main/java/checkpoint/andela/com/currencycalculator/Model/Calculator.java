@@ -51,6 +51,7 @@ public class Calculator {
             return;
         }
         temp = NumberFormat.getInstance().format(result);
+        operand.add(result);
     }
 
     public void evaluate(){

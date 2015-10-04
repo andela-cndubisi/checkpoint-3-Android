@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="currency">
+        <item name="USD">USD</item>
         <item name="KWD">KWD</item>
         <item name="BHD">BHD</item>
         <item name="OMR">OMR</item>
@@ -11,7 +12,6 @@
         <item name="CHF">CHF</item>
         <item name="AZN">AZN</item>
         <item name="CAD">CAD</item>
-        <item name="USD">USD</item>
     </string-array>
     <string-array name="currencynames">
         <item name="KWD">Kuwaiti dinar</item>

@@ -11,29 +11,32 @@ import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
  */
 public class CurrencyConverter {
     public Calculator calculator;
-
+    public String oldAmount;
     public CurrencyConverter(){
         super();
+        oldAmount = "";
         calculator = new Calculator();
     }
 
-    private String baseCurrency = CurrencyParser.baseCurrency;
-
+    public static String baseCurrency = CurrencyParser.baseCurrency;
     private String tempCurrency = baseCurrency;
+
+    public String getTempCurrency() {
+        return tempCurrency;
+    }
 
     public void setTempCurrency(String tempCurrency) {
         Currency cr = CurrencyParser.getCurrencyRate(tempCurrency);
         this.tempCurrency = cr.getCurrency();
     }
 
-
     public double convert(double amount){
-        if (!baseCurrency.equals(tempCurrency)){
-         double currentInBase = convertToBase(amount);
-         Currency cr = CurrencyParser.getCurrencyRate(tempCurrency);
-           return currentInBase/ cr.getRate();
+        if (!baseCurrency.equals(tempCurrency)) {
+            oldAmount = NumberFormat.getInstance().format(amount);
+            double currentInBase = convertToBase(amount);
+            Currency cr = CurrencyParser.getCurrencyRate(tempCurrency);
+            return currentInBase / cr.getRate();
         }
-
         return amount;
     }
 
@@ -53,12 +56,19 @@ public class CurrencyConverter {
 
 
     public void update() {
-        double n = convert(Double.parseDouble(calculator.getResult()));
-        String newtmp = NumberFormat.getInstance().format(n);
-        calculator.setTemp(newtmp);
-        calculator.toggleIsTyping();
-        tempCurrency = baseCurrency;
+        double n = 0;
+        try {
+            n = convert(NumberFormat.getInstance().parse(calculator.getResult()).doubleValue());
+            String newtmp = NumberFormat.getInstance().format(n);
+            calculator.setTemp(newtmp);
+            calculator.toggleIsTyping();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
-
+    public void updateOldAmount() {
+        oldAmount = calculator.getResult();
+    }
 }
