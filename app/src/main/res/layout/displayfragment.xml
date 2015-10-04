@@ -33,14 +33,13 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/zero"
                 android:layout_gravity="right"
                 android:id="@+id/display"
                 android:gravity="bottom|right"
-                android:textSize="50sp"
-                android:layout_marginTop="-5dp"
+                android:textSize="45sp"
                 android:lines="1"
                 android:maxLines="1"
                 android:minLines="1"
