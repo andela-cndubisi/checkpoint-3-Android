@@ -61,7 +61,7 @@ public class CurrencyConverter {
             n = convert(NumberFormat.getInstance().parse(calculator.getResult()).doubleValue());
             String newtmp = NumberFormat.getInstance().format(n);
             calculator.setTemp(newtmp);
-            calculator.toggleIsTyping();
+            calculator.processOprandStack();
         } catch (ParseException e) {
             e.printStackTrace();
         }

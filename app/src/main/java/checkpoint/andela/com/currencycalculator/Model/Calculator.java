@@ -14,7 +14,7 @@ public class Calculator {
     private Hashtable<String, Operation> operation = new Hashtable<>();
     protected ArrayList<Number> operand = new ArrayList<>();
     public Operation currentOperation;
-    boolean isTyping = false;
+    boolean isEnded = false;
 
     public Calculator(){
         setupOperation();
@@ -27,7 +27,7 @@ public class Calculator {
         operation.put("×", Operation.multiply);
     }
 
-    protected void evaluate(Operation a){
+    protected void evaluateOperation(Operation a){
         double result = 0;
         double first = operand.remove(last).doubleValue();
         double second = operand.remove(last).doubleValue();
@@ -55,8 +55,8 @@ public class Calculator {
     }
 
     public void evaluate(){
-        if(currentOperation != null && isTyping)
-          toggleIsTyping();
+        if(currentOperation != null && isEnded)
+          processOprandStack();
     }
 
     public Operation getOperation(String op){
@@ -64,16 +64,16 @@ public class Calculator {
     }
     
     public void addDigit(String digit){
-        if(isTyping){
+        if(isEnded){
             temp+=digit;
         }else{
             temp = digit;
-            isTyping = true;
+            isEnded = true;
         }
     }
 
     public void addDecimalPoint(){
-        if (isTyping) {
+        if (isEnded) {
             final String decimal = ".";
             if (!temp.contains(decimal)) temp += decimal;
         }else {
@@ -90,20 +90,20 @@ public class Calculator {
     public void clear (){
         operand = new ArrayList<>();
         currentOperation = null;
-        isTyping = false;
+        isEnded = false;
         temp = "0";
     }
 
-    public void toggleIsTyping() {
-        if (isTyping){
-            isTyping = false;
+    public void processOprandStack() {
+        if (isEnded){
+            isEnded = false;
             try {
                 operand.add(NumberFormat.getInstance().parse(temp));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             if(operand.size() >1){
-                evaluate(currentOperation);
+                evaluateOperation(currentOperation);
             }
         }
     }

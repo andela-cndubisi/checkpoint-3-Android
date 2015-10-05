@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,7 +27,7 @@ public class CurrencyFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(),
-                R.layout.simple_list_row,getResources().getStringArray(R.array.currency));
+                R.layout.list_row,getResources().getStringArray(R.array.currency));
         TaskCurrencyRates task = new TaskCurrencyRates(getResources().getStringArray(R.array.currency));
         task.execute();
         setListAdapter(adapter);

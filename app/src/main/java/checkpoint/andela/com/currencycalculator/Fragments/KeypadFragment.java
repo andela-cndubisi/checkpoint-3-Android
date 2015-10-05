@@ -68,7 +68,7 @@ public class KeypadFragment extends Fragment {
     public void operationPressed(View v){
         if(v instanceof Button){
             String operation = ((Button)v).getText().toString();
-            converter.calculator.toggleIsTyping();
+            converter.calculator.processOprandStack();
             converter.calculator.currentOperation  = converter.calculator.getOperation(operation);
             converter.updateOldAmount();
             delegate.update(converter.calculator.getResult());

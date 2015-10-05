@@ -7,9 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
-import checkpoint.andela.com.currencycalculator.Model.CurrencyConverter;
-
 /**
  * Created by andela-cj on 9/29/15.
  */
@@ -20,7 +17,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
     private String [] currencyNames;
 
     public SpinnerAdapter(Context context, String[] object, String[] obj) {
-        super(context, R.layout.simple_row, object);
+        super(context, R.layout.spinner_row, object);
         this.context = context;
         currencies = object;
         currencyNames = obj;
@@ -29,7 +26,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflate = LayoutInflater.from(context);
-        convertView = inflate.inflate(R.layout.simple_row, null);
+        convertView = inflate.inflate(R.layout.spinner_row, null);
         TextView currencyDescriptor = (TextView)convertView.findViewById(R.id.currency);
         currencyDescriptor.setText(currencies[position]);
         return currencyDescriptor;
@@ -38,7 +35,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflate = LayoutInflater.from(context);
-        convertView = inflate.inflate(R.layout.simple_row, null);
+        convertView = inflate.inflate(R.layout.spinner_row, null);
         TextView currencytext = (TextView)convertView.findViewById(R.id.currency);
         TextView currencyDescriptor = (TextView)convertView.findViewById(R.id.currencyDescriptor);
         currencytext.setText(currencies[position]);
