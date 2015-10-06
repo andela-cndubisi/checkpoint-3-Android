@@ -3,10 +3,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/currency"
-        android:textColor="@android:color/white"
+        android:background="#2a5a61"
+         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:password="false"
-        android:background="#2a5a61"
         android:id="@+id/currency"
         android:gravity="center">
 </TextView>

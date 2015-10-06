@@ -56,12 +56,14 @@ public class CurrencyConverter {
 
 
     public void update() {
-        double n = 0;
+        updateOldAmount();
+        double n;
         try {
             n = convert(NumberFormat.getInstance().parse(calculator.getResult()).doubleValue());
             String newtmp = NumberFormat.getInstance().format(n);
             calculator.setTemp(newtmp);
             calculator.processOperandStack();
+//            tempCurrency = baseCurrency;
         } catch (ParseException e) {
             e.printStackTrace();
         }

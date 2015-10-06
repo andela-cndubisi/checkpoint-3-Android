@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
 import checkpoint.andela.com.currencycalculator.MainActivity;
+import checkpoint.andela.com.currencycalculator.Model.Calculator;
 import checkpoint.andela.com.currencycalculator.Model.CurrencyConverter;
 import checkpoint.andela.com.currencycalculator.R;
 
@@ -17,6 +18,7 @@ import checkpoint.andela.com.currencycalculator.R;
  */
 public class KeypadFragment extends Fragment {
     private CurrencyConverter converter;
+    private Calculator calculator;
     private MainActivity activity;
     private DisplayDelegate delegate;
 
@@ -37,20 +39,21 @@ public class KeypadFragment extends Fragment {
     public void onStart() {
         super.onStart();
         converter = activity.converter;
+        calculator = converter.calculator;
     }
 
     public void digitPressed(View v){
         if (v instanceof Button) {
-            converter.calculator.addDigit(((Button) v).getText().toString());
-            delegate.update(converter.calculator.getResult());
+            calculator.addDigit(((Button) v).getText().toString());
+            delegate.update(calculator.getResult());
         }
     }
 
     public void enterPressed(View v){
         if(v instanceof Button) {
             if(v.getId() == R.id.btnE) {
-                converter.calculator.evaluate();
-                delegate.update(converter.calculator.getResult());
+                calculator.evaluate();
+                delegate.update(calculator.getResult());
                 delegate.updateWithOperation(delegate.getMemoryText() + getFormattedResult() + " =");
             }
         }
@@ -58,28 +61,28 @@ public class KeypadFragment extends Fragment {
 
     public void clearPressed(View v){
         if(v instanceof Button) {
-            if (v.getId() == R.id.btnC)
-            converter.calculator.clear();
-            converter.setBaseCurrency(CurrencyParser.baseCurrency);
-            delegate.update(converter.calculator.getResult());
-            delegate.updateWithOperation("");
+            if (v.getId() == R.id.btnC) {
+                calculator.clear();
+                converter.setBaseCurrency(CurrencyParser.baseCurrency);
+                delegate.update(calculator.getResult());
+                delegate.updateWithOperation("");
+            }
         }
     }
 
     public void operationPressed(View v){
         if(v instanceof Button){
             String operation = ((Button)v).getText().toString();
-            converter.calculator.processOperandStack();
-            converter.calculator.currentOperation  = converter.calculator.getOperation(operation);
-            converter.updateOldAmount();
-            delegate.update(converter.calculator.getResult());
+            converter.update();
+            calculator.currentOperation = calculator.getOperation(operation);
+            delegate.update(calculator.getResult());
             delegate.updateWithOperation(getFormattedResult() + " "+ operation + " ");
         }
     }
 
     public void periodPressed(View v){
-        converter.calculator.addDecimalPoint();
-        delegate.update(converter.calculator.getResult());
+        calculator.addDecimalPoint();
+        delegate.update(calculator.getResult());
     }
 
     public String getFormattedResult(){
@@ -88,8 +91,8 @@ public class KeypadFragment extends Fragment {
 
     public void negatePressed(View v){
         if(v instanceof Button) {
-            converter.calculator.negateDigit();
-            delegate.update(converter.calculator.getResult());
+            calculator.negateDigit();
+            delegate.update(calculator.getResult());
         }
     }
 
