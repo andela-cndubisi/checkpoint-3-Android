@@ -67,4 +67,8 @@ public class CurrencyConverter {
             }
         }
     }
+
+    public void setOperation(String operation) {
+        calculator.currentOperation = calculator.getOperation(operation);
+    }
 }

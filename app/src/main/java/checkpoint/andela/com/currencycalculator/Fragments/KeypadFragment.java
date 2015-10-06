@@ -56,7 +56,7 @@ public class KeypadFragment extends Fragment {
     public void enterPressed(View v){
         if(v instanceof Button) {
             if(v.getId() == R.id.btnE) {
-                updateInputHistoryWithOperation(" " + ((Button) v).getText().toString());
+                updateInputHistoryWithOperation(((Button) v).getText().toString());
                 converter.update();
                 delegate.updateWithOperation(processInputHistory());
                 delegate.update(calculator.getResult());
@@ -80,7 +80,7 @@ public class KeypadFragment extends Fragment {
         if(v instanceof Button){
             String operation = ((Button)v).getText().toString();
             updateInputHistoryWithOperation(operation);
-            calculator.currentOperation = calculator.getOperation(operation);
+            converter.setOperation(operation);
             converter.update();
             delegate.update(calculator.getResult());
             delegate.updateWithOperation(processInputHistory());
@@ -93,15 +93,7 @@ public class KeypadFragment extends Fragment {
         delegate.update(calculator.getResult());
     }
 
-    public void updateInputHistoryWithOperation(String operation){
-        if (calculator.isEnded)
-            inputHistory.add(converter.getTempCurrency()+ " " + calculator.getResult());
-        else  {
-            inputHistory = new ArrayList<>();
-            inputHistory.add(converter.getBaseCurrency()+ " " + calculator.getResult());
-        }
-        inputHistory.add(operation);
-    }
+
     public void negatePressed(View v){
         if(v instanceof Button) {
             calculator.negateDigit();
@@ -117,12 +109,20 @@ public class KeypadFragment extends Fragment {
         return hist;
     }
 
+    public void updateInputHistoryWithOperation(String operation){
+        if (calculator.isEnded)
+            inputHistory.add(converter.getTempCurrency()+ " " + calculator.getResult());
+        else  {
+            inputHistory = new ArrayList<>();
+            inputHistory.add(converter.getBaseCurrency()+ " " + calculator.getResult());
+        }
+        inputHistory.add(operation);
+    }
+
     public void setDisplayDelegate(DisplayDelegate delegate){
         this.delegate = delegate;
     }
-    public DisplayDelegate getDisplayDelegate(){
-        return delegate;
-    }
+    public DisplayDelegate getDisplayDelegate(){ return delegate; }
 
     public interface DisplayDelegate{
         void update(String result);
