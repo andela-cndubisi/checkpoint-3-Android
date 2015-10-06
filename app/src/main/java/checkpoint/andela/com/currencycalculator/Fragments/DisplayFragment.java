@@ -67,7 +67,7 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             CurrencyConverter converter = ((MainActivity)getActivity()).converter;
-            DisplayFragment display = ((MainActivity)getActivity()).display;
+            DisplayFragment display = DisplayFragment.this;
             String currency = (String) ((TextView)view).getText();
 
             double amount = 0;
