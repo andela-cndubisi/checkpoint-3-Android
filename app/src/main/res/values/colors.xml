@@ -5,4 +5,5 @@
         <color name="black">#000000</color>
         <color name="operand_color">#1c293a</color>
         <color name="background_display">#1c3a4f</color>
+        <color name="operation_color">#ee8112</color>
 </resources>
