@@ -70,8 +70,4 @@ public class CurrencyParser {
         }
         return null;
     }
-
-
-
-
 }

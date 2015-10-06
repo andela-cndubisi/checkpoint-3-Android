@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
 import checkpoint.andela.com.currencycalculator.MainActivity;
 import checkpoint.andela.com.currencycalculator.Model.Calculator;
@@ -21,6 +23,7 @@ public class KeypadFragment extends Fragment {
     private Calculator calculator;
     private MainActivity activity;
     private DisplayDelegate delegate;
+    private ArrayList<String> inputHistory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class KeypadFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.keypadfragment, container, false);
         activity = (MainActivity) getActivity();
+        inputHistory = new ArrayList<>();
         return v;
     }
 
@@ -52,9 +56,10 @@ public class KeypadFragment extends Fragment {
     public void enterPressed(View v){
         if(v instanceof Button) {
             if(v.getId() == R.id.btnE) {
-                calculator.evaluate();
+                updateInputHistoryWithOperation(" " + ((Button) v).getText().toString());
+                converter.update();
+                delegate.updateWithOperation(processInputHistory());
                 delegate.update(calculator.getResult());
-                delegate.updateWithOperation(delegate.getMemoryText() + getFormattedResult() + " =");
             }
         }
     }
@@ -64,6 +69,7 @@ public class KeypadFragment extends Fragment {
             if (v.getId() == R.id.btnC) {
                 calculator.clear();
                 converter.setBaseCurrency(CurrencyParser.baseCurrency);
+                inputHistory = new ArrayList<>();
                 delegate.update(calculator.getResult());
                 delegate.updateWithOperation("");
             }
@@ -73,10 +79,12 @@ public class KeypadFragment extends Fragment {
     public void operationPressed(View v){
         if(v instanceof Button){
             String operation = ((Button)v).getText().toString();
-            converter.update();
+            updateInputHistoryWithOperation(operation);
             calculator.currentOperation = calculator.getOperation(operation);
+            converter.update();
             delegate.update(calculator.getResult());
-            delegate.updateWithOperation(getFormattedResult() + " "+ operation + " ");
+            delegate.updateWithOperation(processInputHistory());
+
         }
     }
 
@@ -85,15 +93,28 @@ public class KeypadFragment extends Fragment {
         delegate.update(calculator.getResult());
     }
 
-    public String getFormattedResult(){
-        return converter.getTempCurrency() +" "+converter.oldAmount;
+    public void updateInputHistoryWithOperation(String operation){
+        if (calculator.isEnded)
+            inputHistory.add(converter.getTempCurrency()+ " " + calculator.getResult());
+        else  {
+            inputHistory = new ArrayList<>();
+            inputHistory.add(converter.getBaseCurrency()+ " " + calculator.getResult());
+        }
+        inputHistory.add(operation);
     }
-
     public void negatePressed(View v){
         if(v instanceof Button) {
             calculator.negateDigit();
             delegate.update(calculator.getResult());
         }
+    }
+
+    public String processInputHistory(){
+        String hist = "";
+        for (String n: inputHistory){
+            hist += " "+ n;
+        }
+        return hist;
     }
 
     public void setDisplayDelegate(DisplayDelegate delegate){
@@ -107,6 +128,5 @@ public class KeypadFragment extends Fragment {
         void update(String result);
         void updateWithOperation(String operation);
         String getDisplayText();
-        String getMemoryText();
     }
 }

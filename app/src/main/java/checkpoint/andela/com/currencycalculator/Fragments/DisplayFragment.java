@@ -1,6 +1,7 @@
 package checkpoint.andela.com.currencycalculator.Fragments;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -59,7 +60,6 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
         display.setText(result);
     }
     public void updateWithOperation(String operation) { memory.setText(operation);}
-    public String getMemoryText() { return memory.getText().toString(); }
     public String getDisplayText(){ return display.getText().toString(); }
     public Spinner getBaseCurrencySwitch() {return baseCurrencySwitch;}
 

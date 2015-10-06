@@ -32,7 +32,6 @@ public class CurrencyConverter {
 
     public double convert(double amount){
         if (!baseCurrency.equals(tempCurrency)) {
-            oldAmount = NumberFormat.getInstance().format(amount);
             double currentInBase = convertToBase(amount);
             Currency cr = CurrencyParser.getCurrencyRate(tempCurrency);
             return currentInBase / cr.getRate();
@@ -56,21 +55,16 @@ public class CurrencyConverter {
 
 
     public void update() {
-        updateOldAmount();
-        double n;
-        try {
-            n = convert(NumberFormat.getInstance().parse(calculator.getResult()).doubleValue());
-            String newtmp = NumberFormat.getInstance().format(n);
-            calculator.setTemp(newtmp);
-            calculator.processOperandStack();
-//            tempCurrency = baseCurrency;
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if(calculator.isEnded){
+            double n;
+            try {
+                n = convert(NumberFormat.getInstance().parse(calculator.getResult()).doubleValue());
+                String newtmp = NumberFormat.getInstance().format(n);
+                calculator.setTemp(newtmp);
+                calculator.processOperandStack();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
-
-    }
-
-    public void updateOldAmount() {
-        oldAmount = calculator.getResult();
     }
 }

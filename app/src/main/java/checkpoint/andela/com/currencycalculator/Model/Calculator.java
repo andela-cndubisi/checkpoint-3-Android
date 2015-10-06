@@ -14,7 +14,7 @@ public class Calculator {
     private Hashtable<String, Operation> operation = new Hashtable<>();
     protected ArrayList<Number> operand = new ArrayList<>();
     public Operation currentOperation;
-    boolean isEnded = false;
+    public boolean isEnded = false;
 
     public Calculator(){
         setupOperation();

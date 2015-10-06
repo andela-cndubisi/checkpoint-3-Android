@@ -20,7 +20,6 @@ import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
  */
 public class TaskCurrencyRates extends AsyncTask<String, Void , String> {
     private String query = "select*from yahoo.finance.xchange where pair in (";
-
     public TaskCurrencyRates(String[] keys){
         generateQuery(keys);
         new CurrencyParser(null).parse();
