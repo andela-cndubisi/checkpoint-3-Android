@@ -2,6 +2,7 @@ package checkpoint.andela.com.currencycalculator.Model;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import checkpoint.andela.com.currencycalculator.CurrencyParser.Currency;
 import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
@@ -11,11 +12,12 @@ import checkpoint.andela.com.currencycalculator.CurrencyParser.CurrencyParser;
  */
 public class CurrencyConverter {
     public Calculator calculator;
-    public String oldAmount;
+    private ArrayList<String> inputHistory;
+
     public CurrencyConverter(){
         super();
-        oldAmount = "";
         calculator = new Calculator();
+        inputHistory = new ArrayList<>();
     }
 
     public static String baseCurrency = CurrencyParser.baseCurrency;
@@ -59,8 +61,8 @@ public class CurrencyConverter {
             double n;
             try {
                 n = convert(NumberFormat.getInstance().parse(calculator.getResult()).doubleValue());
-                String newtmp = NumberFormat.getInstance().format(n);
-                calculator.setTemp(newtmp);
+                String newTemp = NumberFormat.getInstance().format(n);
+                calculator.setTemp(newTemp);
                 calculator.processOperandStack();
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -68,7 +70,25 @@ public class CurrencyConverter {
         }
     }
 
+    public void updateInputHistoryWithOperation(String operation){
+        if (calculator.isEnded)
+            inputHistory.add(getTempCurrency()+ " " + calculator.getResult());
+        else  {
+            inputHistory = new ArrayList<>();
+            inputHistory.add(getBaseCurrency()+ " " + calculator.getResult());
+        }
+        inputHistory.add(operation);
+    }
+
+    public ArrayList<String> getInputHistory(){
+        return inputHistory;
+    }
+
     public void setOperation(String operation) {
         calculator.currentOperation = calculator.getOperation(operation);
+    }
+
+    public void clearInputHistory() {
+        inputHistory = new ArrayList<>();
     }
 }

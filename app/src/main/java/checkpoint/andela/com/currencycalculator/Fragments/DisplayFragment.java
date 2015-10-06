@@ -76,9 +76,12 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            String oldTemp = converter.getTempCurrency();
+            converter.setTempCurrency(converter.getBaseCurrency());
             converter.setBaseCurrency(currency);
             double newAmount = converter.convert(amount);
             display.update(NumberFormat.getInstance().format(newAmount));
+            converter.setTempCurrency(oldTemp);
         }
 
         @Override

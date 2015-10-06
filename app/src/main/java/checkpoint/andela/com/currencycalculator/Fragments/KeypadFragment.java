@@ -23,7 +23,6 @@ public class KeypadFragment extends Fragment {
     private Calculator calculator;
     private MainActivity activity;
     private DisplayDelegate delegate;
-    private ArrayList<String> inputHistory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class KeypadFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.keypadfragment, container, false);
         activity = (MainActivity) getActivity();
-        inputHistory = new ArrayList<>();
         return v;
     }
 
@@ -56,7 +54,7 @@ public class KeypadFragment extends Fragment {
     public void enterPressed(View v){
         if(v instanceof Button) {
             if(v.getId() == R.id.btnE) {
-                updateInputHistoryWithOperation(((Button) v).getText().toString());
+                converter.updateInputHistoryWithOperation(((Button) v).getText().toString());
                 converter.update();
                 delegate.updateWithOperation(processInputHistory());
                 delegate.update(calculator.getResult());
@@ -69,7 +67,7 @@ public class KeypadFragment extends Fragment {
             if (v.getId() == R.id.btnC) {
                 calculator.clear();
                 converter.setBaseCurrency(CurrencyParser.baseCurrency);
-                inputHistory = new ArrayList<>();
+                converter.clearInputHistory();
                 delegate.update(calculator.getResult());
                 delegate.updateWithOperation("");
             }
@@ -79,7 +77,7 @@ public class KeypadFragment extends Fragment {
     public void operationPressed(View v){
         if(v instanceof Button){
             String operation = ((Button)v).getText().toString();
-            updateInputHistoryWithOperation(operation);
+            converter.updateInputHistoryWithOperation(operation);
             converter.setOperation(operation);
             converter.update();
             delegate.update(calculator.getResult());
@@ -103,21 +101,13 @@ public class KeypadFragment extends Fragment {
 
     public String processInputHistory(){
         String hist = "";
-        for (String n: inputHistory){
+        for (String n: converter.getInputHistory()){
             hist += " "+ n;
         }
         return hist;
     }
 
-    public void updateInputHistoryWithOperation(String operation){
-        if (calculator.isEnded)
-            inputHistory.add(converter.getTempCurrency()+ " " + calculator.getResult());
-        else  {
-            inputHistory = new ArrayList<>();
-            inputHistory.add(converter.getBaseCurrency()+ " " + calculator.getResult());
-        }
-        inputHistory.add(operation);
-    }
+
 
     public void setDisplayDelegate(DisplayDelegate delegate){
         this.delegate = delegate;
