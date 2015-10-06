@@ -1,7 +1,6 @@
 package checkpoint.andela.com.currencycalculator.Fragments;
 
 import android.app.ListFragment;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,8 +49,8 @@ public class CurrencyFragment extends ListFragment {
         wCurrency = textView.getText().toString();
         converter.setTempCurrency(wCurrency);
         if (oldIndex != -1)
-            l.getChildAt(oldIndex).setBackgroundColor(getResources().getColor(R.color.default_color));
-        v.setBackgroundColor(getResources().getColor(R.color.pressed_color));
+            l.getChildAt(oldIndex).setBackgroundResource(R.color.default_color);
+        v.setBackgroundResource(R.color.pressed_color);
         oldIndex = position;
     }
 }
