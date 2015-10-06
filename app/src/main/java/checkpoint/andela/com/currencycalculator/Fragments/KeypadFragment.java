@@ -38,8 +38,8 @@ public class KeypadFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        converter = activity.converter;
-        calculator = converter.calculator;
+        converter = activity.getConverter();
+        calculator = converter.getCalculator();
     }
 
     public void digitPressed(View v){

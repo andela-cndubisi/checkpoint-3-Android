@@ -50,5 +50,6 @@ public class MainActivity extends ActionBarActivity {
     public void periodPressed(View v) { keypad.periodPressed(v); }
     public void negatePressed(View v) { keypad.negatePressed(v);  }
     public void enterPressed(View v){ keypad.enterPressed(v); }
+    public CurrencyConverter getConverter(){return converter;}
 
 }

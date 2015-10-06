@@ -14,6 +14,7 @@
         <item name="CAD">CAD</item>
     </string-array>
     <string-array name="currencynames">
+        <item name="USD">U.S Dollar</item>
         <item name="KWD">Kuwaiti dinar</item>
         <item name="BHD">Bahraini Dinar</item>
         <item name="OMR">Omani rial</item>
@@ -24,6 +25,5 @@
         <item name="CHF">Swiss Franc</item>
         <item name="AZN">Azerbaijani Manat</item>
         <item name="CAD">Canadian Dollar</item>
-        <item name="USD">U.S Dollar</item>
     </string-array>
 </resources>

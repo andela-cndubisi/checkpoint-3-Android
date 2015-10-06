@@ -91,4 +91,5 @@ public class CurrencyConverter {
     public void clearInputHistory() {
         inputHistory = new ArrayList<>();
     }
+    public Calculator getCalculator(){return calculator;}
 }

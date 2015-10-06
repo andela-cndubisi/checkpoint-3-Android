@@ -44,10 +44,8 @@ public class CurrencyParser {
 
     private void generateRates() throws JSONException {
         for(int i = 0; i < currentRates.length(); i++){
-
             JSONObject temp = currentRates.getJSONObject(i);
-            rates.add(new Currency(cleanName(temp.getString("Name")),
-                    temp.getDouble("Rate")));
+            rates.add(new Currency(cleanName(temp.getString("Name")), temp.getDouble("Rate")));
         }
     }
 
