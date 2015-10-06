@@ -39,7 +39,7 @@ public class DisplayFragmentTest {
         assertTrue(display.isInLayout());
         assertNotNull(display);
         //  And an initail currency of 'USD'
-        assertEquals("USD",display.getCurrency());
+        assertEquals("USD",display.getBaseCurrencySwitch());
     }
 
     @Test

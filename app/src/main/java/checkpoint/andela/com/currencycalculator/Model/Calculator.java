@@ -56,7 +56,7 @@ public class Calculator {
 
     public void evaluate(){
         if(currentOperation != null && isEnded)
-          processOprandStack();
+          processOperandStack();
     }
 
     public Operation getOperation(String op){
@@ -94,7 +94,7 @@ public class Calculator {
         temp = "0";
     }
 
-    public void processOprandStack() {
+    public void processOperandStack() {
         if (isEnded){
             isEnded = false;
             try {

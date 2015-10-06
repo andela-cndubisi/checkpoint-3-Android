@@ -58,7 +58,8 @@ public class KeypadFragment extends Fragment {
 
     public void clearPressed(View v){
         if(v instanceof Button) {
-            if (v.getId() == R.id.btnC) converter.calculator.clear();
+            if (v.getId() == R.id.btnC)
+            converter.calculator.clear();
             converter.setBaseCurrency(CurrencyParser.baseCurrency);
             delegate.update(converter.calculator.getResult());
             delegate.updateWithOperation("");
@@ -68,7 +69,7 @@ public class KeypadFragment extends Fragment {
     public void operationPressed(View v){
         if(v instanceof Button){
             String operation = ((Button)v).getText().toString();
-            converter.calculator.processOprandStack();
+            converter.calculator.processOperandStack();
             converter.calculator.currentOperation  = converter.calculator.getOperation(operation);
             converter.updateOldAmount();
             delegate.update(converter.calculator.getResult());
