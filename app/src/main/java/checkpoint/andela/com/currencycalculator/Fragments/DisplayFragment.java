@@ -1,7 +1,6 @@
 package checkpoint.andela.com.currencycalculator.Fragments;
 
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -69,8 +68,8 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             CurrencyConverter converter = ((MainActivity)getActivity()).converter;
             DisplayFragment display = ((MainActivity)getActivity()).display;
-
             String currency = (String) ((TextView)view).getText();
+
             double amount = 0;
             try {
                 amount = NumberFormat.getInstance().parse(display.getDisplayText()).doubleValue();
@@ -79,7 +78,6 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
             }
             converter.setBaseCurrency(currency);
             double newAmount = converter.convert(amount);
-            converter.setTempCurrency(currency);
             display.update(NumberFormat.getInstance().format(newAmount));
         }
 
