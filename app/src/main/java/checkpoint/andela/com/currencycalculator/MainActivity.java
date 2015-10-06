@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
         display = (DisplayFragment)fm.findFragmentById(R.id.screen);
         keypad = (KeypadFragment)fm.findFragmentById(R.id.keypad);
         keypad.setDisplayDelegate(display);
-        wheel = (CurrencyFragment)fm.findFragmentById(R.id.currencywheel);
+        wheel = (CurrencyFragment)fm.findFragmentById(R.id.currency_wheel);
     }
 
     @TargetApi(19)
