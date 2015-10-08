@@ -29,6 +29,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
         convertView = inflate.inflate(R.layout.spinner_row, null);
         TextView currencyDescriptor = (TextView)convertView.findViewById(R.id.currency);
         currencyDescriptor.setText(currencies[position]);
+        currencyDescriptor.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
         return currencyDescriptor;
     }
 

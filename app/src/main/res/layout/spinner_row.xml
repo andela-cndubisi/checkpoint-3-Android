@@ -27,6 +27,7 @@
         android:paddingBottom="5dp"
         android:id="@+id/currencyDescriptor"
         android:gravity="center"
-        android:paddingLeft="10dp">
+        android:paddingLeft="10dp"
+        android:autoText="false">
     </TextView>
 </LinearLayout>

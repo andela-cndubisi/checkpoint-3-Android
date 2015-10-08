@@ -47,7 +47,7 @@ public class CurrencyFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         TextView textView = (TextView)v;
         wCurrency = textView.getText().toString();
-        converter.setBaseCurrency(BaseCurrencyFragment.getBaseCurrency());
+        converter.setBaseCurrency(BaseCurrencySwitcher.getBaseCurrency());
         converter.setTempCurrency(wCurrency);
         if (oldIndex != -1)
             l.getChildAt(oldIndex).setBackgroundResource(R.color.default_color);
