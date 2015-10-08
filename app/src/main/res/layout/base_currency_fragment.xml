@@ -11,15 +11,16 @@
         android:id="@+id/spinnerCurrency"
         android:textColor="@android:color/white"/>
     <TextView
+
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:text="Base Currency"
         android:textSize="20dp"
+        android:labelFor="@+id/spinnerCurrency"
         android:gravity="center"
         android:background="#9b6f39"
-
-        android:id="@+id/editText"
+        android:id="@+id/basecurrencytext"
         android:textColor="@android:color/white" />
 
 
