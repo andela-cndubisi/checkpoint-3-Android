@@ -63,7 +63,7 @@ public class ActivityTest {
     */
     @Test
     public void testCurrencyList(){
-        CurrencyFragment wheel = (CurrencyFragment)activity.getFragmentManager().findFragmentById(R.id.currencywheel);
+        CurrencyFragment wheel = (CurrencyFragment)activity.getFragmentManager().findFragmentById(R.id.currency_wheel);
         //  Then I should see list of currency option
         assertTrue(wheel.isAdded());
         assertNotNull(wheel);

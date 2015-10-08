@@ -25,7 +25,6 @@ import java.text.ParseException;
  */
 public class DisplayFragment extends Fragment implements KeypadFragment.DisplayDelegate {
     private TextView display;
-    private Spinner baseCurrencySwitch;
     private TextView memory;
     private MainActivity activity;
 
@@ -36,7 +35,6 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
         View v = inflater.inflate(R.layout.displayfragment, container, false);
         display = (TextView)v.findViewById(R.id.display);
         memory = (TextView) v.findViewById(R.id.displayMemory);
-        baseCurrencySwitch = (Spinner) v.findViewById(R.id.spinnerCurrency);
         activity = ((MainActivity)getActivity());
         TaskCurrencyRates task = new TaskCurrencyRates(getResources().getStringArray(R.array.currency));
         task.execute();
@@ -46,13 +44,6 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
     @Override
     public void onStart() {
         super.onStart();
-        String [] a = getResources().getStringArray(R.array.currency);
-        String[] currencyNames = getResources().getStringArray(R.array.currencynames) ;
-
-        ArrayAdapter<String> b = new SpinnerAdapter(activity,a, currencyNames);
-
-        baseCurrencySwitch.setAdapter(b);
-        baseCurrencySwitch.setOnItemSelectedListener(onItemSelectedListener);
     }
 
     public void update(String result) {
@@ -60,34 +51,5 @@ public class DisplayFragment extends Fragment implements KeypadFragment.DisplayD
     }
     public void updateWithOperation(String operation) { memory.setText(operation);}
     public String getDisplayText(){ return display.getText().toString(); }
-    public Spinner getBaseCurrencySwitch() {return baseCurrencySwitch;}
-
-
-    AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            CurrencyConverter converter = ((MainActivity)getActivity()).getConverter();
-            DisplayFragment display = DisplayFragment.this;
-            String currency = (String) ((TextView)view).getText();
-
-            double amount = 0;
-            try {
-                amount = NumberFormat.getInstance().parse(display.getDisplayText()).doubleValue();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            String oldTemp = converter.getTempCurrency();
-            converter.setTempCurrency(converter.getBaseCurrency());
-            converter.setBaseCurrency(currency);
-            double newAmount = converter.convert(amount);
-            display.update(NumberFormat.getInstance().format(newAmount));
-            converter.setTempCurrency(oldTemp);
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    };
 
 }

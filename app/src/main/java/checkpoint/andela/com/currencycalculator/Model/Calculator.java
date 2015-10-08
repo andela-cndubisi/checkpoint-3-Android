@@ -102,7 +102,7 @@ public class Calculator {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(operand.size() >1){
+            if(operand.size() >1 && currentOperation!= null){
                 evaluateOperation(currentOperation);
             }
         }

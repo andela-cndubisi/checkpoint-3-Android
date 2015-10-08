@@ -25,11 +25,6 @@
         android:id="@+id/spinnerandresult"
         android:gravity="bottom"
         android:orientation="horizontal">
-            <Spinner
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerCurrency"
-                android:textColor="@android:color/white"/>
 
             <TextView
                 android:layout_width="0dp"

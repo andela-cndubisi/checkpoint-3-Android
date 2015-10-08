@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CurrencyCalculator</string>
+    <string name="app_name">Currency Calculator</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="nine">9</string>

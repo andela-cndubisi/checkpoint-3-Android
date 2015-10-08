@@ -20,7 +20,7 @@ public class CurrencyConverter {
         inputHistory = new ArrayList<>();
     }
 
-    public static String baseCurrency = CurrencyParser.baseCurrency;
+    private String baseCurrency = CurrencyParser.baseCurrency;
     private String tempCurrency = baseCurrency;
 
     public String getTempCurrency() {
